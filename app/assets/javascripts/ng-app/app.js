@@ -9,6 +9,7 @@ angular
       .state('app', {
         url: '',
         templateUrl: 'app.html',
+        controller: 'NavCtrl',
         abstract: true
       })
         .state('app.home', {
@@ -34,7 +35,8 @@ angular
         })
         .state('app.game-detail', {
           url: '/game/:id',
-          templateUrl: 'game-detail.html'
+          templateUrl: 'game-detail.html',
+          controller: 'GameDetailCtrl'
         })
         .state('app.profile', {
           url: '/profile',

@@ -1,16 +1,22 @@
-<h1>App shell</h1>
-Pages: <br>
-<a ui-sref="app.welcome">Welcome</a>
-<a ui-sref="app.intro">Introduction</a>
-<a ui-sref="app.search">Search</a>
-<a ui-sref="app.games">games</a>
-<a ui-sref="app.game-detail">game-detail</a>
-<a ui-sref="app.profile">profile</a>
-<a ui-sref="app.profile-edit">profile-edit</a>
-<a ui-sref="app.about">about</a><br>
-Modals: <br>
-<a ui-sref="app.login">login</a>
-<a ui-sref="app.sign up">sign up</a>
-<a ui-sref="app.add review">add review</a>
-
-<div ui-view></div>
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-left">
+    Pages: <br>
+    <a class="navbar-link" ui-sref="app.home">Home</a>
+    <a class="navbar-link" ui-sref="app.welcome">Welcome</a>
+    <a class="navbar-link" ui-sref="app.intro">Introduction</a>
+    <a class="navbar-link" ui-sref="app.search">Search</a>
+    <a class="navbar-link" ui-sref="app.games">games</a>
+    <a class="navbar-link" ui-sref="app.game-detail">game-detail</a>
+    <a class="navbar-link" ui-sref="app.profile">profile</a>
+    <a class="navbar-link" ui-sref="app.profile-edit">profile-edit</a>
+    <a class="navbar-link" ui-sref="app.about">about</a><br>
+    </div>
+    <div class="navbar-right">
+    Modals: <br>
+    <a class="navbar-link" ng-click="login()">Login</a>
+    <a class="navbar-link" ng-click="signup()">Signup</a>
+    </div>
+  </div>
+</div>
+  <div class="container" ui-view></div>
