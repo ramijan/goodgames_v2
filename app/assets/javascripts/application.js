@@ -11,6 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
+//= require angular
+//= require angular-animate
+//= require angular-ui-router
+//= require angular-bootstrap
+//= require angular-resource
+//= require angular-rails-templates
+//= require_tree ../templates
 //= require_tree .
