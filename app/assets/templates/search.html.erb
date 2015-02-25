@@ -1,1 +1,14 @@
 <h1>Search results</h1>
+
+<form ng-submit="getGames()">
+<input type="text" ng-model="query" placeholder="Search games">
+<button>Search</button>
+</form>
+<ul>
+  <li ng-repeat="game in games">
+    <img ng-src="{{game.image.small_url}}" width=100>
+    <p>{{game.name}}</p>
+    <p>{{ game.original_release_date | date : 'yyyy'}}</p>
+    <p>{{game.deck}}</p>
+  </li>
+</ul>

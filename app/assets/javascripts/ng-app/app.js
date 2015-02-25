@@ -21,7 +21,8 @@ angular
       })
       .state('search', {
         url: '/search',
-        templateUrl: 'search.html'
+        templateUrl: 'search.html',
+        controller: 'SearchCtrl'
       })
       .state('games', {
         url: '/games',
