@@ -1,36 +1,26 @@
 
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
-    <h1>Signup!</h1>
+    <h1>Login!</h1>
     
-    <% flash.each do |key, errors| %>
+    <% flash.each do |key, error| %>
       <p class='alert alert-<%= key %>' role='alert'>
-      <% errors.each do |error| %>
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <%= error %><br>
-      <% end %>
       </p>
     <% end %>
 
-    <%= form_for @user, url: '/signup' do |f| %>
+    <%= form_for :user, url: '/login' do |f| %>
       <div class="form-group">
         <%= f.label "Username:" %>
         <%= f.text_field :username, class:"form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label "Email:" %>
-        <%= f.text_field :email, class:"form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label "Choose a password:" %>
+        <%= f.label "Password:" %>
         <%= f.password_field :password, class:"form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label "Confirm password:" %>
-        <%= f.password_field :password_confirmation, class:"form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.submit "Sign up", class:"btn btn-default" %>
+        <%= f.submit "Login", class:"btn btn-default" %>
       </div>
     <% end %>
   </div>
