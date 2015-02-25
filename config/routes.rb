@@ -10,4 +10,12 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+
+  namespace :api do
+
+    get '/search' => 'search#search'
+
+  end
+
+
 end
