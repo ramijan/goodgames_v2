@@ -1,1 +1,28 @@
-<div class="main-view-container" ui-view></div>
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-left">
+    Pages: <br>
+    <a class="navbar-link" ui-sref="home">Home</a>
+    <a class="navbar-link" ui-sref="welcome">Welcome</a>
+    <a class="navbar-link" ui-sref="intro">Introduction</a>
+    <a class="navbar-link" ui-sref="search">Search</a>
+    <a class="navbar-link" ui-sref="games">games</a>
+    <a class="navbar-link" ui-sref="game-detail">game-detail</a>
+    <a class="navbar-link" ui-sref="profile">profile</a>
+    <a class="navbar-link" ui-sref="profile-edit">profile-edit</a>
+    <a class="navbar-link" ui-sref="about">about</a><br>
+    </div>
+    <div class="navbar-right">
+      <% if current_user %>
+        <%= link_to current_user.username.upcase, '#', class:"navbar-link" %> | <%= link_to "Logout", logout_path, class:"navbar-link" %>
+      <% else %>
+        <%= link_to "Login", login_path, class:"navbar-link" %> |
+        <%= link_to "Sign up", signup_path, class:"navbar-link" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container" ui-view></div>
