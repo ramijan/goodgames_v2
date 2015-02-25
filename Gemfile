@@ -30,6 +30,8 @@ gem 'bower-rails'
 gem 'angular-rails-templates'
 # for cool icons
 gem 'font-awesome-rails'
+# for api calls
+gem 'httparty'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
