@@ -8,7 +8,7 @@ class GiantBomb
                 api_key: ENV['GB_KEY'],
                 format: 'json',
                 resources: 'game',
-                field_list: 'api_detail_url,deck,expected_release_year,image,name,original_release_date,platforms',
+                field_list: 'api_detail_url,deck,expected_release_year,image,name,original_release_date,platforms,id,publisher',
                 query: "#{query}"
                } ).parsed_response
 
