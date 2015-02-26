@@ -9,8 +9,8 @@ class Api::GamesController < ApplicationController
         name: data['name'],
         deck: data['deck'],
         giant_bomb_id: data['id'],
-        thumb_image: data['image']['thumb_url'],
-        medium_image: data['image']['medium_url'],
+        thumb_image: data['image'] ? data['image']['thumb_url'] : nil,
+        medium_image: data['image'] ? data['image']['medium_url'] : nil,
         expected_release_year: data['expected_release_year'],
         expected_release_day: data['expected_release_day'],
         expected_release_month: data['expected_release_month'],
@@ -18,20 +18,34 @@ class Api::GamesController < ApplicationController
         original_release_date: data['original_release_date'],
       )
       
-      data['platforms'].each do |platform|
-        game.platforms << platform['name']
+      if data['platforms']
+        data['platforms'].each do |platform|
+          game.platforms << platform['name']
+        end
       end
-      data['developers'].each do |developer|
-        game.developers << developer['name']
+
+      if data['developers']
+        data['developers'].each do |developer|
+          game.developers << developer['name']
+        end
+      end 
+
+      if data['franchises']
+        data['franchises'].each do |franchise|
+          game.franchises << franchise['name']
+        end
       end
-      data['franchises'].each do |franchise|
-        game.franchises << franchise['name']
+
+      if data['genres']
+        data['genres'].each do |genre|
+          game.genres << genre['name']
+        end
       end
-      data['genres'].each do |genre|
-        game.genres << genre['name']
-      end
-      data['publishers'].each do |publisher|
-        game.publishers << publisher['name']
+
+      if data['publishers']
+        data['publishers'].each do |publisher|
+          game.publishers << publisher['name']
+        end
       end
 
       game.save

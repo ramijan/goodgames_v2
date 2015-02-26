@@ -35,9 +35,12 @@ $snes-light-purple: #8F8291;
 //   z-index: 1;
 // }
 
-
+body {
+  background-color: #F5F5F5;
+}
 .navbar {
   box-shadow: 0 3px 3px rgba(0,0,0,.175);
+  background-color: $snes-purple;
 }
 .game-row{
   // display: inline-block;
