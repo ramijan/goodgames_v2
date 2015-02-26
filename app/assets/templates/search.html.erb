@@ -4,11 +4,11 @@
 <p ng-show="!games || games.length==0">No results found</p>
 <div class="game-row row" ng-repeat="game in games">
   <div class="game-image col-sm-2">
-    <a href=''><img class="img-thumbnail" ng-src="{{game.image.thumb_url}}"></a>
+    <a ui-sref="game-detail({id: game.id})"><img class="img-thumbnail" ng-src="{{game.image.thumb_url}}"></a>
   </div>  
   <div class="game-text col-sm-8">
     <h4>
-      <a href=''>{{game.name}}</a>
+      <a ui-sref="game-detail({id: game.id})">{{game.name}}</a>
       <span>({{ game.original_release_date || game.expected_release_year || 'n/a' | limitTo : 4 }})</span>
       <i ng-repeat="num in [1,2,3,4,5]" class="fa fa-star star-gold"></i>
     </h4>
