@@ -11,6 +11,14 @@
     <a class="navbar-link" ui-sref="profile">profile</a>
     <a class="navbar-link" ui-sref="profile-edit">profile-edit</a>
     <a class="navbar-link" ui-sref="about">about</a><br>
+      <div class="search-bar">
+        <form ng-controller="SearchCtrl" ng-submit="getGames()">
+          <div class="form-group">
+          <input type="text" ng-model="query" placeholder="Search games" class="form-control">
+          </div>
+        </form>
+        <%= image_tag 'spinner.gif', class:'spinner' %>
+      </div>
     </div>
     <div class="navbar-right">
       <% if current_user %>
@@ -26,3 +34,16 @@
 
 
 <div class="container" ui-view></div>
+
+<style>
+.search-bar {
+  position: relative;
+}
+.spinner {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+
+}
+</style>

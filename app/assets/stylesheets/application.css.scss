@@ -18,6 +18,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$snes-gray: #D1D0D8;
+$snes-dark-gray: #95969D;
+$snes-purple: #80379C;
+$snes-light-purple: #8F8291;
+
+
 // for reference
 // .row {
 //   width: 700px;
@@ -28,3 +34,46 @@
 //   padding: 2em;
 //   z-index: 1;
 // }
+
+
+.navbar {
+  box-shadow: 0 3px 3px rgba(0,0,0,.175);
+}
+.game-row{
+  // display: inline-block;
+  min-height: 150px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $snes-dark-gray;
+}
+.fa-star {
+  color: gray;
+}
+.img-thumbnail {
+  display: block;
+  margin: auto;
+  max-width: 130px;
+  width: 130%;
+  margin-left: -15px;
+  margin-top: 10px;
+}
+.badge {
+  margin-right: 3px;
+  background-color: $snes-purple;
+}
+.star-gold {
+  color: gold;
+}
+.rating-bar {
+  outline: none;
+}
+.btn-default {
+  background-color: $snes-gray;
+}
+.btn-default:hover {
+  background-color: $snes-dark-gray;
+}
+.btn-default.active {
+  background-color: $snes-purple;
+  color: white;
+}

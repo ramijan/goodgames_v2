@@ -1,50 +1,29 @@
-<h1>Search results</h1>
 <div class="row">
-<form ng-submit="getGames()">
-<div class="form-group">
-<input type="text" ng-model="query" placeholder="Search games" class="form-control">
-</div>
-</form>
-</div>
-<hr>
-
+<div class="col-sm-12 col-md-9">
+<h1>Search results</h1>
+<p ng-show="!games || games.length==0">No results found</p>
 <div class="game-row row" ng-repeat="game in games">
-  <div class="col-sm-2">
-    <img class="img-thumbnail" ng-src="{{game.image.thumb_url}}">
+  <div class="game-image col-sm-2">
+    <a href=''><img class="img-thumbnail" ng-src="{{game.image.thumb_url}}"></a>
   </div>  
-  <div class="col-sm-8">
+  <div class="game-text col-sm-8">
     <h4>
-      {{game.name}} 
-      <span>({{ game.original_release_date | limitTo : 4 }})</span>
-      <i class="fa fa-star"></i>
+      <a href=''>{{game.name}}</a>
+      <span>({{ game.original_release_date || game.expected_release_year || 'n/a' | limitTo : 4 }})</span>
+      <i ng-repeat="num in [1,2,3,4,5]" class="fa fa-star star-gold"></i>
     </h4>
     <p><span class="badge" ng-repeat="platform in game.platforms">{{platform.name}}</span></p>
     <p>
-      {{game.deck}}<br>
-      <small>my rating:</small><i class="fa fa-star"></i>
+      <small>{{game.deck}}</small><br>
+      <small class="text-muted">My Rating: </small><rating ng-model="game.my_rating" max="5" state-on="'fa fa-star star-gold'" state-off="'fa fa-star'" class="rating-bar"></rating>
     </p>
+    <div class="btn-group">
+      <label popover="Playing" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Playing'" uncheckable><i class="fa fa-gamepad fa-lg"></i></label>
+      <label popover="Played" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Played'" uncheckable><i class="fa fa-check-circle fa-lg"></i></label>
+      <label popover="Backlog" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Backlog'" uncheckable><i class="fa fa-bookmark fa-lg"></i></label>
+    </div>
   </div>
 
 </div>
-
-
-<style>
-.game-row{
-  min-height: 150px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid lightgray;
-}
-.fa-star {
-  color: gray;
-}
-.img-thumbnail {
-  display: block;
-  margin: auto;
-  width: 100%;
-}
-.badge {
-  margin-right: 3px;
-  background-color: brown;
-}
-</style>
+</div>
+</div>
