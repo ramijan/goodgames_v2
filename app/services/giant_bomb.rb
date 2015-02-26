@@ -19,8 +19,6 @@ class GiantBomb
 
   def self.game(game_id)
     
-    return {} if (game_id == nil || game_id.match(/^\s*$/))
-
     response = HTTParty.get( giant_bomb_game_url(game_id), query: {
                 api_key: ENV['GB_KEY'],
                 format: 'json',
@@ -38,7 +36,7 @@ private
   end
 
   def self.giant_bomb_game_url(game_id)
-    "http://www.giantbomb.com/api/game/#{game_id}/"
+    "http://www.giantbomb.com/api/game/3030-#{game_id}/"
   end
 
 end

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :api do
 
     get '/search' => 'search#search'
+    get '/games/:id' => 'games#show'
 
   end
 
