@@ -1,14 +1,50 @@
 <h1>Search results</h1>
-
+<div class="row">
 <form ng-submit="getGames()">
-<input type="text" ng-model="query" placeholder="Search games">
-<button>Search</button>
+<div class="form-group">
+<input type="text" ng-model="query" placeholder="Search games" class="form-control">
+</div>
 </form>
-<ul>
-  <li ng-repeat="game in games">
-    <img ng-src="{{game.image.small_url}}" width=100>
-    <p>{{game.name}}</p>
-    <p>{{ game.original_release_date | date : 'yyyy'}}</p>
-    <p>{{game.deck}}</p>
-  </li>
-</ul>
+</div>
+<hr>
+
+<div class="game-row row" ng-repeat="game in games">
+  <div class="col-sm-2">
+    <img class="img-thumbnail" ng-src="{{game.image.thumb_url}}">
+  </div>  
+  <div class="col-sm-8">
+    <h4>
+      {{game.name}} 
+      <span>({{ game.original_release_date | limitTo : 4 }})</span>
+      <i class="fa fa-star"></i>
+    </h4>
+    <p><span class="badge" ng-repeat="platform in game.platforms">{{platform.name}}</span></p>
+    <p>
+      {{game.deck}}<br>
+      <small>my rating:</small><i class="fa fa-star"></i>
+    </p>
+  </div>
+
+</div>
+
+
+<style>
+.game-row{
+  min-height: 150px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+}
+.fa-star {
+  color: gray;
+}
+.img-thumbnail {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+.badge {
+  margin-right: 3px;
+  background-color: brown;
+}
+</style>
