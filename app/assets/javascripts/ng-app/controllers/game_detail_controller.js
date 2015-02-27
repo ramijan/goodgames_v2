@@ -9,9 +9,11 @@ angular.module('goodGames')
 
     
 
-    $scope.review = function() {
+    $scope.addReview = function() {
       $modal.open({
-        templateUrl: 'review.html'
+        templateUrl: 'review.html',
+        windowClass: 'review-modal',
+        backdropClass: 'review-backdrop'
       });
     };
 

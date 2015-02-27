@@ -1,10 +1,103 @@
-<img ng-src="{{game.medium_image}}">
-<h1>{{game.name}}</h1>
-<h2>{{game.original_release_date | limitTo: 4 || game.expected_release_year | limitTo: 4 || 'unknown'}}</h2>
-<a ng-click="review()">Add a review</a>
+<div class="row">
+  <div class="col-sm-3 image-col">
+    <img class="game-img img-thumbnail" ng-src="{{game.medium_image}}">
+    <div class="shelf-buttons">
+      <div class="btn-group">
+        <label popover="Playing" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-model="game.shelf" btn-radio="'Playing'"><i class="fa fa-gamepad fa-lg"></i></label>
+        <label popover="Played" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-model="game.shelf" btn-radio="'Played'"><i class="fa fa-check-circle fa-lg"></i></label>
+        <label popover="Backlog" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-model="game.shelf" btn-radio="'Backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+      </div>
+    </div>
+  </div>
 
-Release date:
-{{ release_date | date}}
+  <div class="col-sm-6">
+    <h1>{{game.name}} <small>({{ game.original_release_date || game.expected_release_year || 'n/a' | limitTo : 4 }})</small></h1>
+    <p>
+      <i ng-repeat="num in [1,2,3,4,5]" class="fa fa-star fa-lg star-gold"></i>
+      (X.XX) based on ## reviews
+    </p>
+    <p>{{game.deck}}</p>
+    <table class="table">
+      <tr>
+        <td>Release Date: </td>
+        <td><small>{{ release_date | date}}</small></td>
+      </tr>
+      <tr>
+        <td>Platforms</td>
+        <td><span class="badge" ng-repeat="p in game.platforms">{{p}}</span></td>
+      </tr>
+      <tr>
+        <td>Developers</td>
+        <td><small ng-repeat="d in game.developers">{{d}}<br> </small></td>
+      </tr>
+      <tr>
+        <td>Publishers</td>
+        <td><small ng-repeat="p in game.publishers">{{p}}<br></small></td>
+      </tr>
+      <tr>
+        <td>Genres</td>
+        <td><span class="badge" ng-repeat="g in game.genres">{{g}}</span></td>
+      </tr>
+      <tr>
+        <td>Franchises</td>
+        <td><small ng-repeat="f in game.franchises">{{f}}<br></small></td>
+      </tr>
+    </table>
+    <p>My rating:</p>
+    <rating ng-model="game.my_rating" max="5" state-on="'fa fa-star fa-2x star-gold'" state-off="'fa fa-star fa-2x'" class="rating-bar"></rating>
+    <br><br>
+    <button class="btn btn-default form-control review-button" ng-click="addReview()">Add your review</button>
+    <br><br>
+    <div class="panel panel-default">
+      <div class="panel-heading">Goodgames user ratings and reviews</div>
+      <div class="star-rating-bars">
+      <span class="pull-left">5&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
+      <progressbar class="progress-striped active" type="danger" value="38">{{38}}</progressbar>
+      <span class="pull-left">4&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
+      <progressbar class="progress-striped active" type="danger" value="28">28</progressbar>
+      <span class="pull-left">3&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
+      <progressbar class="progress-striped active" type="danger" value="12">12</progressbar>
+      <span class="pull-left">2&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
+      <progressbar class="progress-striped active" type="danger" value="3">3</progressbar>
+      <span class="pull-left">1&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
+      <progressbar class="progress-striped active" type="danger" value="1">1</progressbar>
+      </div>
+    </div>
+    <div class="user-review">
+    </div>
+  </div>
+</div>
 
+<style>
+.game-img {
+  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+.image-col {
+  text-align: center;
+}
+.review-button {
+  background-color: #80379C;
+  color: white;
+}
+.review-button:hover {
+  color: white;
+}
+.review-modal {
+  top: 20%;
+}
+.review-backdrop {
+  height: 1600px;
+}
+.star-rating-bars {
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+.panel-heading {
+  background-color: #D1D0D8 !important;
+}
 
-{{game}}
+</style>
