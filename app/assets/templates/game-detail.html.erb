@@ -13,33 +13,34 @@
   <div class="col-sm-6">
     <h1>{{game.name}} <small>({{ game.original_release_date || game.expected_release_year || 'n/a' | limitTo : 4 }})</small></h1>
     <p>
-      <i ng-repeat="num in [1,2,3,4,5]" class="fa fa-star fa-lg star-gold"></i>
-      (X.XX) based on ## reviews
+      {{stars}}
+      <i ng-repeat="star in getStars() track by $index" ng-class="star" class="fa fa-lg star-gold"></i>
+      ({{averageRating | number: 2}}) based on {{reviews.length}} review<span ng-hide="reviews.length===1">s</span>
     </p>
     <p>{{game.deck}}</p>
     <table class="table table-condensed">
       <tr>
-        <td>Release Date: </td>
+        <td><strong>Release Date</strong></td>
         <td><small>{{ release_date | date}}</small></td>
       </tr>
       <tr>
-        <td>Platforms</td>
+        <td><strong>Platforms</strong></td>
         <td><span class="badge" ng-repeat="p in game.platforms">{{p}}</span></td>
       </tr>
       <tr>
-        <td>Developers</td>
+        <td><strong>Developers</strong></td>
         <td><small ng-repeat="d in game.developers">{{d}}<br> </small></td>
       </tr>
       <tr>
-        <td>Publishers</td>
+        <td><strong>Publishers</strong></td>
         <td><small ng-repeat="p in game.publishers">{{p}}<br></small></td>
       </tr>
       <tr>
-        <td>Genres</td>
+        <td><strong>Genres</strong></td>
         <td><span class="badge" ng-repeat="g in game.genres">{{g}}</span></td>
       </tr>
       <tr>
-        <td>Franchises</td>
+        <td><strong>Franchises</strong></td>
         <td><small ng-repeat="f in game.franchises">{{f}}<br></small></td>
       </tr>
     </table>
@@ -49,18 +50,18 @@
     <button class="btn btn-default form-control review-button" ng-click="addReview()">Add your review</button>
     <br><br>
     <div class="panel panel-default">
-      <div class="panel-heading">Goodgames user ratings and reviews</div>
+      <div class="panel-heading">Goodgames user ratings and reviews for {{game.name}}</div>
       <div class="star-rating-bars">
       <span class="pull-left">5&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
-      <progressbar class="progress-striped active" type="danger" value="38">{{38}}</progressbar>
+      <progressbar class="progress-striped active" type="danger" value="starCounts[5]/reviews.length * 100">{{starCounts[5]}}</progressbar>
       <span class="pull-left">4&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
-      <progressbar class="progress-striped active" type="danger" value="28">28</progressbar>
+      <progressbar class="progress-striped active" type="danger" value="starCounts[4]/reviews.length * 100">{{starCounts[4]}}</progressbar>
       <span class="pull-left">3&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
-      <progressbar class="progress-striped active" type="danger" value="12">12</progressbar>
+      <progressbar class="progress-striped active" type="danger" value="starCounts[3]/reviews.length * 100">{{starCounts[3]}}</progressbar>
       <span class="pull-left">2&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
-      <progressbar class="progress-striped active" type="danger" value="3">3</progressbar>
+      <progressbar class="progress-striped active" type="danger" value="starCounts[2]/reviews.length * 100">{{starCounts[2]}}</progressbar>
       <span class="pull-left">1&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
-      <progressbar class="progress-striped active" type="danger" value="1">1</progressbar>
+      <progressbar class="progress-striped active" type="danger" value="starCounts[1]/reviews.length * 100">{{starCounts[1]}}</progressbar>
       </div>
     </div>
     <div class="user-reviews panel panel-default" ng-repeat="review in reviews">

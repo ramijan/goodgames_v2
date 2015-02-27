@@ -10,10 +10,14 @@ angular.module('goodGames')
 
       $http.get('/api/review/' + $scope.game.id).success(function(data) {
         $scope.review = data;
+        $scope.oldRating = $scope.review.rating;
       });
 
       $http.get('/api/reviews/' + $scope.game.id).success(function(data) {
         $scope.reviews = data;
+        $scope.averageRating = getAverageRating($scope.reviews);
+        $scope.getStars = getStars;
+        starCount();
       });
     });
 
@@ -31,10 +35,17 @@ angular.module('goodGames')
 
     $scope.addRating = function() {
       if($scope.review && $scope.review.id) {
-        $http.put('/api/reviews/' + $scope.review.id, {review: {rating: $scope.review.rating}});
+        $http.put('/api/reviews/' + $scope.review.id, {review: {rating: $scope.review.rating}}).success(function(){
+          $scope.starCounts[$scope.oldRating] -= 1; 
+          $scope.starCounts[$scope.review.rating] += 1;
+          $scope.oldRating = $scope.review.rating;
+          updateReviews();
+        });
       } else {
         $http.post('/api/reviews', {review: {rating: $scope.review.rating, game_id: $scope.game.id}}).success(function(data){
           $scope.review = data;
+          $scope.starCounts[$scope.review.rating] += 1;
+          updateReviews();
         });
       }
     };
@@ -65,6 +76,66 @@ angular.module('goodGames')
         date = "unknown";
       }
       return date;
+    }
+
+    function getAverageRating( reviews ) {
+      if(reviews.length===0) return 0;
+      var sum = 0;
+      for(var i = 0; i < reviews.length; i++) {
+        sum += reviews[i].rating;
+      }
+      return sum / reviews.length;
+    }
+
+    function getStars() {
+      if($scope.reviews.length === 0) {
+        return ['fa-star-o','fa-star-o','fa-star-o','fa-star-o','fa-star-o'];
+      }
+      avg = $scope.averageRating;
+      floor = Math.floor(avg);
+      stars = [];
+
+      for ( var i = 0; i < floor; i++ ) {
+        stars.push('fa-star');
+      }
+
+      if(avg - floor > 0.25) {
+        stars.push('fa-star-half-o');
+        floor++;
+      }
+
+      for(i = floor; i < 5; i++) {
+        stars.push('fa-star-o');
+      }
+      return stars;
+    }
+
+    function starCount() {
+      $scope.starCounts = [0,0,0,0,0,0];
+      $scope.reviewCount = $scope.reviews.length;
+      for (var i = 0; i < $scope.reviews.length; i++) {
+        $scope.starCounts[$scope.reviews[i].rating] += 1;
+      }
+    }
+
+    function updateReviews() {
+      var newReview = true;
+      var index;
+      for(var i = 0 ; i < $scope.reviews.length; i++) {
+        if($scope.reviews[i].id == $scope.review.id) {
+          newReview = false;
+          index = i;
+          break;
+        }
+      }
+      if(newReview) {
+        $scope.reviews.push($scope.review);
+      } else {
+        $scope.reviews[index].rating = $scope.review.rating;
+        $scope.reviews[index].text = $scope.review.text;
+      }
+      $scope.averageRating = getAverageRating($scope.reviews);
+
     }
 
   }]);
