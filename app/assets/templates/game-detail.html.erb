@@ -52,7 +52,7 @@
     <button class="btn btn-default form-control review-button" ng-click="addReview()">Add your review</button>
     <br><br>
     <div class="panel panel-default">
-      <div class="panel-heading">Goodgames user ratings and reviews for {{game.name}}</div>
+      <div class="panel-heading">User ratings and reviews for {{game.name}}</div>
       <div class="star-rating-bars">
       <span class="pull-left">5&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
       <progressbar class="progress-striped active" type="danger" value="starCounts[5]/reviews.length * 100">{{starCounts[5]}}</progressbar>
@@ -107,15 +107,17 @@
   background-color: #D1D0D8 !important;
 }
 .shelf-flash {
-  display: none;
-  width: 145px;
+  padding-top: 10px;
   margin: auto;
 }
 .avatar {
   float: left;
-  margin-top: 5px;
+  margin-top: 2px;
   margin-right: 10px;
-  margin-left: 5px;
+  margin-left: 7px;
+}
+.user-reviews {
+  padding-top: 5px;
 }
 
 
