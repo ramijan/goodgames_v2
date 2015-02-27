@@ -5,8 +5,6 @@ class CreateUserGameLinks < ActiveRecord::Migration
       t.references :game, index: true
       t.string :shelf
       t.text :platforms, array: true, default: []
-      t.integer :rating
-      t.text :review
 
       t.timestamps null: false
     end

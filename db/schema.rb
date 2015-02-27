@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227024736) do
+ActiveRecord::Schema.define(version: 20150227052344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,23 @@ ActiveRecord::Schema.define(version: 20150227024736) do
     t.datetime "updated_at",                            null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["game_id"], name: "index_reviews_on_game_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
   create_table "user_game_links", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "game_id"
     t.string   "shelf"
     t.text     "platforms",  default: [],              array: true
-    t.integer  "rating"
-    t.text     "review"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
@@ -58,6 +68,8 @@ ActiveRecord::Schema.define(version: 20150227024736) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "reviews", "games"
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_game_links", "games"
   add_foreign_key "user_game_links", "users"
 end

@@ -3,6 +3,15 @@ class Api::GamesController < ApplicationController
   def show
     game = Game.find_by(giant_bomb_id: params[:id])
 
+    if game && current_user && game.users.include?(current_user)
+      link = UserGameLink.find_by(game_id: game.id, user_id: current_user.id)
+      review = game.reviews.find_by(user_id: current_user.id)
+    end
+
+    if game
+      reviews = game.reviews.includes(:user)
+    end
+
     if game.nil?
       data = GiantBomb.game(params[:id])['results']
       game = Game.new(
@@ -51,7 +60,7 @@ class Api::GamesController < ApplicationController
       game.save
     end
 
-    render json: game
+    render json: {game: game, link: link, reviews: reviews, review: review}
 
   end
 
