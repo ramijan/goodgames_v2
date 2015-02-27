@@ -24,28 +24,35 @@ angular.module('goodGames')
 
 
     $scope.addShelf = function(shelf) {
+      flashIn('shelf');
       if($scope.link && $scope.link.id) {
-        $http.put('/api/links/' + $scope.link.id, {user_game_link: {shelf: shelf}});
+        $http.put('/api/links/' + $scope.link.id, {user_game_link: {shelf: shelf}}).success(function(){
+          flashOut('shelf');
+        });
       } else {
         $http.post('/api/links', {user_game_link: {shelf: shelf, game_id: $scope.game.id}}).success(function(data){
           $scope.link = data;
+          flashOut('shelf');
         });
       }
     };
 
     $scope.addRating = function() {
+      flashIn('rating');
       if($scope.review && $scope.review.id) {
         $http.put('/api/reviews/' + $scope.review.id, {review: {rating: $scope.review.rating}}).success(function(){
           $scope.starCounts[$scope.oldRating] -= 1; 
           $scope.starCounts[$scope.review.rating] += 1;
           $scope.oldRating = $scope.review.rating;
           updateReviews();
+          flashOut('rating');
         });
       } else {
         $http.post('/api/reviews', {review: {rating: $scope.review.rating, game_id: $scope.game.id}}).success(function(data){
           $scope.review = data;
           $scope.starCounts[$scope.review.rating] += 1;
           updateReviews();
+          flashOut('rating');
         });
       }
     };
@@ -136,6 +143,20 @@ angular.module('goodGames')
       }
       $scope.averageRating = getAverageRating($scope.reviews);
 
+    }
+
+    function flashIn(type) {
+      $('.'+type+'-flash').append("<i class='fa fa-spinner fa-spin'></i>&nbsp;Saving...").fadeIn();
+    }
+
+    function flashOut(type) {
+      var elt = $('.'+type+'-flash');
+      elt.empty().append("<i class='fa fa-floppy-o'></i>&nbsp;Saved!");
+      window.setTimeout(function() {
+        elt.fadeOut(function() {
+          $(this).empty();
+        });
+      }, 1000);
     }
 
   }]);

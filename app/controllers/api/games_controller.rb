@@ -10,6 +10,7 @@ class Api::GamesController < ApplicationController
 
     if game
       reviews = game.reviews.includes(:user)
+      link_count = game.users.count
     end
 
     if game.nil?
@@ -60,7 +61,7 @@ class Api::GamesController < ApplicationController
       game.save
     end
 
-    render json: {game: game, link: link, reviews: reviews, review: review}
+    render json: {game: game, link: link, link_count: link_count, reviews: reviews, review: review}
 
   end
 

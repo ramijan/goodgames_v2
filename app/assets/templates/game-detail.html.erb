@@ -7,6 +7,8 @@
         <label popover="Played" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-click="addShelf('played')" ng-model="link.shelf" btn-radio="'played'"><i class="fa fa-check-circle fa-lg"></i></label>
         <label popover="Backlog" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-click="addShelf('backlog')" ng-model="link.shelf" btn-radio="'backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
       </div>
+      <div class="shelf-flash">
+      </div>
     </div>
   </div>
 
@@ -45,7 +47,7 @@
       </tr>
     </table>
     <h4>My rating:</h4>
-    <rating ng-model="review.rating" ng-change="addRating()" max="5" state-on="'fa fa-star fa-2x star-gold'" state-off="'fa fa-star fa-2x'" class="rating-bar"></rating>
+    <rating ng-model="review.rating" ng-change="addRating()" max="5" state-on="'fa fa-star fa-2x star-gold'" state-off="'fa fa-star fa-2x'" class="rating-bar"></rating>&nbsp;&nbsp;<span class="rating-flash"></span>
     <br><br>
     <button class="btn btn-default form-control review-button" ng-click="addReview()">Add your review</button>
     <br><br>
@@ -65,7 +67,10 @@
       </div>
     </div>
     <div class="user-reviews panel panel-default" ng-repeat="review in reviews">
-    {{ review.user.username}} - {{review.rating}} - {{review.text }} - Posted {{ review.created_at | date }}
+    <%= image_tag 'avatar.jpg', class:'avatar' %>
+    <p>{{review.user.username}} rated it {{review.rating}} stars</p>
+    <p>{{review.text }}</p> 
+    <p><small>Posted {{ review.created_at | date }}</small></p>
     </div>
   </div>
 </div>
@@ -100,6 +105,17 @@
 }
 .panel-heading {
   background-color: #D1D0D8 !important;
+}
+.shelf-flash {
+  display: none;
+  width: 145px;
+  margin: auto;
+}
+.avatar {
+  float: left;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 5px;
 }
 
 
