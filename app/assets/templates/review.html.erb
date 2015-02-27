@@ -1,4 +1,29 @@
-<div width:400>
-<h1>Review</h1>
-
+<div class='review-container'>
+  <h3 class="pull-left">{{header}}</h3>
+  <button type="button" class="close pull-right" ng-click="cancel()">&times;</button>
+  <div class="clearfix"></div>
+  <form>
+    <textarea rows="10" class="form-control" ng-model="review.text"></textarea>
+    <br>
+    <span class="h4">Rating:</span>
+    <rating ng-model="review.rating" max="5" state-on="'fa fa-star fa-2x star-gold'" state-off="'fa fa-star fa-2x'" class="rating-bar"></rating>&nbsp;&nbsp;<span class="rating-review-flash"></span>
+    <br><br>
+    <button class="btn btn-default review-button form-control" ng-click="addReview()">Submit</button>
+    <div class="review-flash"></div>
+    <br><br>
+  </form>
 </div>
+
+
+<style>
+.review-container {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #F5F5F5;
+  border-radius: 5px;
+}
+.close {
+  margin-top: 5px;
+}
+
+</style>

@@ -1,29 +1,28 @@
 <div class="row">
-<div class="col-sm-12 col-md-9">
-<h1>Search results</h1>
-<p ng-show="!games || games.length==0">No results found</p>
-<div class="game-row row" ng-repeat="game in games">
-  <div class="game-image col-sm-2">
-    <a ui-sref="game-detail({id: game.id})"><img class="img-thumbnail" ng-src="{{game.image.thumb_url}}"></a>
-  </div>  
-  <div class="game-text col-sm-8">
-    <h4>
-      <a ui-sref="game-detail({id: game.id})">{{game.name}}</a>
-      <span>({{ game.original_release_date || game.expected_release_year || 'n/a' | limitTo : 4 }})</span>
-      <i ng-repeat="num in [1,2,3,4,5]" class="fa fa-star star-gold"></i>
-    </h4>
-    <p><span class="badge" ng-repeat="platform in game.platforms">{{platform.name}}</span></p>
-    <p>
-      <small>{{game.deck}}</small><br>
-      <small class="text-muted">My Rating: </small><rating ng-model="game.my_rating" max="5" state-on="'fa fa-star star-gold'" state-off="'fa fa-star'" class="rating-bar"></rating>
-    </p>
-    <div class="btn-group">
-      <label popover="Playing" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Playing'"><i class="fa fa-gamepad fa-lg"></i></label>
-      <label popover="Played" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Played'"><i class="fa fa-check-circle fa-lg"></i></label>
-      <label popover="Backlog" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+  <div class="col-sm-12 col-md-9">
+    <h1>Search results</h1>
+    <p ng-show="!games || games.length==0">No results found</p>
+    <div class="game-row panel panel-default row" ng-repeat="game in games">
+      <div class="game-image col-sm-2">
+        <a ui-sref="game-detail({id: game.id})"><img class="img-thumbnail" ng-src="{{game.image.thumb_url}}"></a>
+      </div>  
+      <div class="game-text col-sm-8">
+        <h4>
+          <a ui-sref="game-detail({id: game.id})">{{game.name}}</a>
+          <span>({{ game.original_release_date || game.expected_release_year || 'n/a' | limitTo : 4 }})</span>
+          <i ng-repeat="num in [1,2,3,4,5]" class="fa fa-star star-gold"></i>
+        </h4>
+        <p><span class="badge" ng-repeat="platform in game.platforms">{{platform.name}}</span></p>
+        <p>
+          <small>{{game.deck}}</small><br>
+          <small class="text-muted">My Rating: </small><rating ng-model="game.my_rating" max="5" state-on="'fa fa-star star-gold'" state-off="'fa fa-star'" class="rating-bar"></rating>
+        </p>
+        <div class="btn-group">
+          <label popover="Playing" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Playing'"><i class="fa fa-gamepad fa-lg"></i></label>
+          <label popover="Played" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Played'"><i class="fa fa-check-circle fa-lg"></i></label>
+          <label popover="Backlog" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+        </div>
+      </div>
     </div>
   </div>
-
-</div>
-</div>
 </div>

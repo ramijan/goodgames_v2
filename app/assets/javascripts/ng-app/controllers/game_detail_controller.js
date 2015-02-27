@@ -10,7 +10,7 @@ angular.module('goodGames')
 
       $http.get('/api/review/' + $scope.game.id).success(function(data) {
         $scope.review = data;
-        $scope.oldRating = $scope.review.rating;
+        if($scope.review) $scope.oldRating = $scope.review.rating;
       });
 
       $http.get('/api/reviews/' + $scope.game.id).success(function(data) {
@@ -41,29 +41,39 @@ angular.module('goodGames')
       flashIn('rating');
       if($scope.review && $scope.review.id) {
         $http.put('/api/reviews/' + $scope.review.id, {review: {rating: $scope.review.rating}}).success(function(){
-          $scope.starCounts[$scope.oldRating] -= 1; 
-          $scope.starCounts[$scope.review.rating] += 1;
-          $scope.oldRating = $scope.review.rating;
+
           updateReviews();
           flashOut('rating');
         });
       } else {
         $http.post('/api/reviews', {review: {rating: $scope.review.rating, game_id: $scope.game.id}}).success(function(data){
           $scope.review = data;
-          $scope.starCounts[$scope.review.rating] += 1;
+          // $scope.starCounts[$scope.review.rating] += 1;
           updateReviews();
           flashOut('rating');
         });
       }
     };
 
-    $scope.addReview = function() {
-      $modal.open({
+    $scope.openReviewModal = function() {
+      var modalInstance = $modal.open({
         templateUrl: 'review.html',
+        controller: 'ReviewCtrl',
         windowClass: 'review-modal',
-        backdropClass: 'review-backdrop'
+        backdropClass: 'review-backdrop',
+        resolve: {
+          game: function(){return $scope.game;},
+          review: function(){return $scope.review;}
+        }
+      });
+
+      modalInstance.result.then(function (review) {
+        $scope.review = review;
+        updateReviews();
       });
     };
+
+
 
     function getReleaseDate( game ) {
       var date;
@@ -142,6 +152,10 @@ angular.module('goodGames')
         $scope.reviews[index].text = $scope.review.text;
       }
       $scope.averageRating = getAverageRating($scope.reviews);
+
+      $scope.starCounts[$scope.oldRating] -= 1; 
+      $scope.starCounts[$scope.review.rating] += 1;
+      $scope.oldRating = $scope.review.rating;
 
     }
 

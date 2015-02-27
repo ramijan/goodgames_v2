@@ -3,9 +3,9 @@
     <img class="game-img img-thumbnail" ng-src="{{game.medium_image}}">
     <div class="shelf-buttons">
       <div class="btn-group">
-        <label popover="Playing" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-click="addShelf('playing')" ng-model="link.shelf" btn-radio="'playing'"><i class="fa fa-gamepad fa-lg"></i></label>
-        <label popover="Played" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-click="addShelf('played')" ng-model="link.shelf" btn-radio="'played'"><i class="fa fa-check-circle fa-lg"></i></label>
-        <label popover="Backlog" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-click="addShelf('backlog')" ng-model="link.shelf" btn-radio="'backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+        <label popover="Playing" popover-popup-delay=250 popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-click="addShelf('playing')" ng-model="link.shelf" btn-radio="'playing'"><i class="fa fa-gamepad fa-lg"></i></label>
+        <label popover="Played" popover-popup-delay=250 popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-click="addShelf('played')" ng-model="link.shelf" btn-radio="'played'"><i class="fa fa-check-circle fa-lg"></i></label>
+        <label popover="Backlog" popover-popup-delay=250 popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-lg" ng-click="addShelf('backlog')" ng-model="link.shelf" btn-radio="'backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
       </div>
       <div class="shelf-flash">
       </div>
@@ -49,10 +49,10 @@
     <h4>My rating:</h4>
     <rating ng-model="review.rating" ng-change="addRating()" max="5" state-on="'fa fa-star fa-2x star-gold'" state-off="'fa fa-star fa-2x'" class="rating-bar"></rating>&nbsp;&nbsp;<span class="rating-flash"></span>
     <br><br>
-    <button class="btn btn-default form-control review-button" ng-click="addReview()">Add your review</button>
+    <button class="btn btn-default form-control review-button" ng-click="openReviewModal()">Add your review</button>
     <br><br>
     <div class="panel panel-default">
-      <div class="panel-heading">User ratings and reviews for {{game.name}}</div>
+      <div class="panel-heading"><b>User ratings and reviews for {{game.name}}</b></div>
       <div class="star-rating-bars">
       <span class="pull-left">5&nbsp;<i class="fa fa-star star-gold"></i>&nbsp;</span>
       <progressbar class="progress-striped active" type="danger" value="starCounts[5]/reviews.length * 100">{{starCounts[5]}}</progressbar>
@@ -68,9 +68,9 @@
     </div>
     <div class="user-reviews panel panel-default" ng-repeat="review in reviews">
     <%= image_tag 'avatar.jpg', class:'avatar' %>
-    <p>{{review.user.username}} rated it {{review.rating}} stars</p>
-    <p>{{review.text }}</p> 
-    <p><small>Posted {{ review.created_at | date }}</small></p>
+      <p>{{review.user.username}} rated it {{review.rating}} stars</p>
+      <p>{{review.text }}</p> 
+      <p>&nbsp;&nbsp;<small>Posted {{ review.created_at | date }}</small></p>
     </div>
   </div>
 </div>
