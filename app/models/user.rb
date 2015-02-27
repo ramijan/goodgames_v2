@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_many :user_game_links
+  has_many :games, through: :user_game_links
+
   validates :username, 
               presence: true, 
               uniqueness: { case_sensitive: false }, 
