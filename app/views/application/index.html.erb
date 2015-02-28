@@ -1,16 +1,15 @@
 <div class="navbar navbar-inverse">
   <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="home">
+        <img alt="Brand" src="">
+      </a>
+    </div>
     <div class="navbar-left">
-    Pages: <br>
     <a class="navbar-link" ui-sref="home">Home</a>
     <a class="navbar-link" ui-sref="welcome">Welcome</a>
     <a class="navbar-link" ui-sref="intro">Introduction</a>
-    <a class="navbar-link" ui-sref="search">Search</a>
-    <a class="navbar-link" ui-sref="games">games</a>
-    <a class="navbar-link" ui-sref="game-detail">game-detail</a>
-    <a class="navbar-link" ui-sref="profile">profile</a>
     <a class="navbar-link" ui-sref="profile-edit">profile-edit</a>
-    <a class="navbar-link" ui-sref="about">about</a><br>
       <div class="search-bar">
         <form ng-controller="SearchCtrl" ng-submit="getGames()">
           <div class="form-group">
@@ -20,9 +19,10 @@
         <%= image_tag 'spinner.gif', class:'search-spinner' %>
       </div>
     </div>
-    <div class="navbar-right">
+    <div class="navbar-right navbar-text">
       <% if current_user %>
-        <%= link_to current_user.username.upcase, '#', class:"navbar-link" %> | <%= link_to "Logout", logout_path, class:"navbar-link" %>
+        <a class="navbar-link" ui-sref="games">MY GAMES</a>
+        <a class="navbar-link" ui-sref="profile"><%= current_user.username.upcase %></a> | <%= link_to "Logout", logout_path, class:"navbar-link" %>
       <% else %>
         <%= link_to "Login", login_path, class:"navbar-link" %> |
         <%= link_to "Sign up", signup_path, class:"navbar-link" %>
@@ -35,6 +35,16 @@
 
 <div class="container" ui-view></div>
 
+<div class="navbar navbar-inverse footer">
+      <p class="navbar-text navbar-left">WDI Project 4 - Created by Rami Burpee</p>
+      <a class="gh-footer-link navbar-left navbar-link" href="https://github.com/ramijan/goodgames_v2" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+
+      <a class="li-footer-link navbar-left navbar-link" href="https://www.linkedin.com/pub/rami-burpee/18/8b8/a56" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+
+    <a class="navbar-right gb-footer-link" href="http://www.giantbomb.com" target="_blank"><%= image_tag 'giant-bomb-logo.png', height:'40' %></a>
+    <p class="navbar-text navbar-right">Powered by:&nbsp; </p>
+</div>
+
 <style>
 .search-bar {
   position: relative;
@@ -44,6 +54,21 @@
   position: absolute;
   right: 5px;
   top: 5px;
-
 }
+.footer {
+  position: relative;
+  margin-bottom: 0;
+  height: 50px;
+}
+.gb-footer-link {
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.gh-footer-link,
+.li-footer-link {
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+
 </style>
