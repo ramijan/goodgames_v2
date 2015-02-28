@@ -1,5 +1,5 @@
 <div class='review-container'>
-  <h3 class="pull-left">{{header}}</h3>
+  <h3 class="pull-left">{{ review.text ? 'Edit ' : 'Add '}} your review for {{ game.name }}</h3>
   <button type="button" class="close pull-right" ng-click="cancel()">&times;</button>
   <div class="clearfix"></div>
   <form>

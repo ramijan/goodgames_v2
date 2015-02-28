@@ -4,11 +4,6 @@ angular
     $scope.game = game;
     $scope.review = review;
 
-    if($scope.review && $scope.review.text) {
-      $scope.header = "Edit review for " + $scope.game.name;
-    } else {
-      $scope.header =  "Add review for " + $scope.game.name;
-    }
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
@@ -45,24 +40,3 @@ angular
 
 
 
-
-
-    //   $scope.addRating = function() {
-    //   flashIn('rating');
-    //   if($scope.review && $scope.review.id) {
-    //     $http.put('/api/reviews/' + $scope.review.id, {review: {rating: $scope.review.rating}}).success(function(){
-    //       $scope.starCounts[$scope.oldRating] -= 1; 
-    //       $scope.starCounts[$scope.review.rating] += 1;
-    //       $scope.oldRating = $scope.review.rating;
-    //       updateReviews();
-    //       flashOut('rating');
-    //     });
-    //   } else {
-    //     $http.post('/api/reviews', {review: {rating: $scope.review.rating, game_id: $scope.game.id}}).success(function(data){
-    //       $scope.review = data;
-    //       $scope.starCounts[$scope.review.rating] += 1;
-    //       updateReviews();
-    //       flashOut('rating');
-    //     });
-    //   }
-    // };
