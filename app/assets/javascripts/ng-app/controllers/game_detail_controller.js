@@ -1,5 +1,5 @@
 angular.module('goodGames')
-  .controller('GameDetailCtrl', ['$scope', '$modal', '$http', '$stateParams', function ($scope, $modal, $http, $stateParams) {
+  .controller('GameDetailCtrl', ['$scope', '$modal', '$http', '$stateParams', 'Flash', function ($scope, $modal, $http, $stateParams, Flash) {
 
     /************** Get game, user_game_link, and review data ***************/
 
@@ -24,33 +24,31 @@ angular.module('goodGames')
 
 
     $scope.addShelf = function(shelf) {
-      flashIn('shelf');
+      Flash.flashIn('shelf-flash');
       if($scope.link && $scope.link.id) {
         $http.put('/api/links/' + $scope.link.id, {user_game_link: {shelf: shelf}}).success(function(){
-          flashOut('shelf');
+          Flash.flashOut('shelf-flash');
         });
       } else {
         $http.post('/api/links', {user_game_link: {shelf: shelf, game_id: $scope.game.id}}).success(function(data){
           $scope.link = data;
-          flashOut('shelf');
+          Flash.flashOut('shelf-flash');
         });
       }
     };
 
     $scope.addRating = function() {
-      flashIn('rating');
+      Flash.flashIn('rating-flash');
       if($scope.review && $scope.review.id) {
         $http.put('/api/reviews/' + $scope.review.id, {review: {rating: $scope.review.rating}}).success(function(){
-
           updateReviews();
-          flashOut('rating');
+          Flash.flashOut('rating-flash');
         });
       } else {
         $http.post('/api/reviews', {review: {rating: $scope.review.rating, game_id: $scope.game.id}}).success(function(data){
           $scope.review = data;
-          // $scope.starCounts[$scope.review.rating] += 1;
           updateReviews();
-          flashOut('rating');
+          Flash.flashOut('rating-flash');
         });
       }
     };
@@ -159,19 +157,7 @@ angular.module('goodGames')
 
     }
 
-    function flashIn(type) {
-      $('.'+type+'-flash').append("<i class='fa fa-spinner fa-spin'></i>&nbsp;Saving...").fadeIn();
-    }
 
-    function flashOut(type) {
-      var elt = $('.'+type+'-flash');
-      elt.empty().append("<i class='fa fa-floppy-o'></i>&nbsp;Saved!");
-      window.setTimeout(function() {
-        elt.fadeOut(function() {
-          $(this).empty();
-        });
-      }, 1000);
-    }
 
   }]);
 

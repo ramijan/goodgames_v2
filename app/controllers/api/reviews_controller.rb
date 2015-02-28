@@ -9,6 +9,15 @@ class Api::ReviewsController < ApplicationController
     end
   end
 
+  def user_index
+    if current_user
+      reviews = current_user.reviews
+      render json: reviews
+    else
+      render json: {}
+    end
+  end
+
   def index
     reviews = Review.where(game_id: params[:game_id])
     render json: reviews, only: [:id, :rating, :text, :created_at], include: {user: {only: [:username]}}

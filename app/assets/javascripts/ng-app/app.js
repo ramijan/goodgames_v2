@@ -26,7 +26,8 @@ angular
       })
       .state('games', {
         url: '/games',
-        templateUrl: 'games.html'
+        templateUrl: 'games.html',
+        controller: 'GamesCtrl'
       })
       .state('game-detail', {
         url: '/game/:id',

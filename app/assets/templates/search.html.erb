@@ -4,7 +4,7 @@
     <p ng-show="!games || games.length==0">No results found</p>
     <div class="game-row panel panel-default row" ng-repeat="game in games">
       <div class="game-image col-sm-2">
-        <a ui-sref="game-detail({id: game.id})"><img class="img-thumbnail" ng-src="{{game.image.thumb_url}}"></a>
+        <a ui-sref="game-detail({id: game.id})"><img class="img-thumbnail search-img" ng-src="{{game.image.thumb_url}}"></a>
       </div>  
       <div class="game-text col-sm-8">
         <h4>
@@ -18,9 +18,9 @@
           <small class="text-muted">My Rating: </small><rating ng-model="game.my_rating" max="5" state-on="'fa fa-star star-gold'" state-off="'fa fa-star'" class="rating-bar"></rating>
         </p>
         <div class="btn-group">
-          <label popover="Playing" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Playing'"><i class="fa fa-gamepad fa-lg"></i></label>
-          <label popover="Played" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Played'"><i class="fa fa-check-circle fa-lg"></i></label>
-          <label popover="Backlog" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'Backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+          <label popover="Playing" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'playing'"><i class="fa fa-gamepad fa-lg"></i></label>
+          <label popover="Played" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'played'"><i class="fa fa-check-circle fa-lg"></i></label>
+          <label popover="Backlog" popover-placement='bottom' popover-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="game.shelf" btn-radio="'backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
         </div>
       </div>
     </div>

@@ -1,16 +1,20 @@
 class Api::GamesController < ApplicationController
 
+  def index
+    if current_user
+      links = current_user.user_game_links
+      render json: links, include: :game
+    else
+      render json: {}
+    end
+  end
+
   def show
     game = Game.find_by(giant_bomb_id: params[:id])
 
     if game && current_user && game.users.include?(current_user)
       link = UserGameLink.find_by(game_id: game.id, user_id: current_user.id)
-      # review = game.reviews.find_by(user_id: current_user.id)
     end
-
-    # if game
-    #   reviews = game.reviews.includes(:user)
-    # end
 
     if game.nil?
       data = GiantBomb.game(params[:id])['results']

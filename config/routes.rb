@@ -15,10 +15,12 @@ Rails.application.routes.draw do
 
     get '/search' => 'search#search'
     get '/games/:id' => 'games#show'
+    get '/games' => 'games#index'
 
     post '/links' => 'user_game_links#create'
     put '/links/:id' => 'user_game_links#update'
 
+    get '/reviews/user' => 'reviews#user_index'
     get '/review/:game_id' => 'reviews#show'
     get '/reviews/:game_id' => 'reviews#index'
     post '/reviews' => 'reviews#create'

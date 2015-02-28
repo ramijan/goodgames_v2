@@ -34,6 +34,9 @@ $snes-light-purple: #8F8291;
 //   padding: 2em;
 //   z-index: 1;
 // }
+.purple {
+  background-color: $snes-purple !important; 
+}
 
 body {
   background-color: #F5F5F5;
@@ -51,7 +54,7 @@ body {
 .fa-star {
   color: gray;
 }
-.img-thumbnail {
+.search-img {
   display: block;
   margin: auto;
   max-width: 130px;
@@ -63,7 +66,7 @@ body {
   background-color: $snes-purple;
 }
 .star-gold {
-  color: gold;
+  color: #F5B100;
 }
 .rating-bar {
   outline: none;
