@@ -3,11 +3,19 @@ game details
   # add reviews at bottom
   # work on review modal
   # add flash notice for updating rating and shelf
-
+search
+  pagination
+mygames
+  pagination
+  better dates for release
+profile page
+welcome page
+footer
+about/contact
 
 factories
   star display factory
-  flash factory
+  # flash factory
   resource?
 
 

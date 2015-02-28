@@ -9,7 +9,7 @@ class GiantBomb
                 format: 'json',
                 resources: 'game',
                 field_list: 'api_detail_url,deck,expected_release_year,image,name,original_release_date,platforms,id,publisher',
-                query: "#{query}"
+                query: "\"#{query}\""
                } ).parsed_response
 
     response['status_code'] == 1 ? response : {}
