@@ -48,4 +48,5 @@ end
 
 # for heroku
 gem 'rails_12factor', group: :production
-
+# instead of Webrick
+gem 'passenger'
