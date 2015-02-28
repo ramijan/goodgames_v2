@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12 col-md-9">
     <h2>Search results ({{games.length || 0}})</h2>
-    <p ng-show="!games || games.length==0">No results found</p>
+    <p class="no-results" ng-show="!games || games.length==0">No results found</p>
     <div class="game-row panel panel-default row" ng-repeat="game in games">
       <div class="game-image col-sm-2">
         <a ui-sref="game-detail({id: game.id})"><img class="img-thumbnail search-img" ng-src="{{game.image.thumb_url}}"></a>
@@ -26,3 +26,4 @@
     </div>
   </div>
 </div>
+

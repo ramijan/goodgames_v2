@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   namespace :api do
 
+    get '/currentuser' => 'users#show'
+
     get '/search' => 'search#search'
     get '/games/:id' => 'games#show'
     get '/games' => 'games#index'

@@ -1,1 +1,46 @@
 <h1>Profile</h1>
+<div class="row">
+  <div class="col-sm-9">
+    <%= image_tag "avatar-lg.jpg", class:'img-thumbnail pull-left' %>
+    <h2>{{currentUser.username}}</h2>
+    <h5>Member since: {{currentUser.created_at | date}}</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-9">
+  <h4>{{currentUser.username}}'s shelves</h4>
+  <table class="table">
+    <tr>
+      <td><a ui-sref="games">Playing ({{playing.length}})</a></td>
+      <td><a ui-sref="games">Played ({{played.length}})</a></td>
+      <td><a ui-sref="games">Backlog ({{backlog.length}})</a></td>
+    </tr>
+  </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-9">
+    <h4>{{currentUser.username}}'s latest ratings</h4>
+    <hr>
+    <div class="pull-left" ng-repeat="game in currentUser.games | limitTo:20">
+      <a ui-sref="game-detail({id: game.giant_bomb_id})"><img ng-src="{{game.thumb_image}}" class="img-thumbnail profile-rating-image"></a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <br>
+  <div class="col-sm-9">
+    <h4>{{currentUser.username}}'s activity</h4>
+  </div>
+</div>
+
+<style>
+.profile-rating-image {
+  width: 80px;
+  height: 80px;
+
+}
+hr {
+  border-color: lightgray;
+}
+</style>

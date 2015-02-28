@@ -36,7 +36,8 @@ angular
       })
       .state('profile', {
         url: '/profile',
-        templateUrl: 'profile.html'
+        templateUrl: 'profile.html',
+        controller: 'ProfileCtrl'
       })
       .state('profile-edit', {
         url: '/profile-edit',

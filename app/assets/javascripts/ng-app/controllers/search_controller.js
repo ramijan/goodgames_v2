@@ -3,13 +3,13 @@ angular
   .controller('SearchCtrl', ['$scope', '$http', '$injector', '$rootScope', function($scope, $http, $injector, $rootScope) {
 
     $scope.getGames = function() {
-      $('.spinner').show();
+      $('.search-spinner').show();
       $http.get("/api/search/?query=" + $scope.query)
            .success(function(data) {
             $rootScope.games = data.results;
             $scope.query = ''; 
             $injector.get('$state').transitionTo('search');
-            $('.spinner').hide();
+            $('.search-spinner').hide();
            });
     };
 

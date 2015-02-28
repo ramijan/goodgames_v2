@@ -6,10 +6,6 @@
       </a>
     </div>
     <div class="navbar-left">
-    <a class="navbar-link" ui-sref="home">Home</a>
-    <a class="navbar-link" ui-sref="welcome">Welcome</a>
-    <a class="navbar-link" ui-sref="intro">Introduction</a>
-    <a class="navbar-link" ui-sref="profile-edit">profile-edit</a>
       <div class="search-bar">
         <form ng-controller="SearchCtrl" ng-submit="getGames()">
           <div class="form-group">
@@ -19,6 +15,9 @@
         <%= image_tag 'spinner.gif', class:'search-spinner' %>
       </div>
     </div>
+    <a class="navbar-link" ui-sref="welcome">Welcome</a>
+    <a class="navbar-link" ui-sref="intro">Introduction</a>
+    <a class="navbar-link" ui-sref="profile-edit">profile-edit</a>
     <div class="navbar-right navbar-text">
       <% if current_user %>
         <a class="navbar-link" ui-sref="games">MY GAMES</a>
@@ -33,7 +32,7 @@
 
 
 
-<div class="container" ui-view></div>
+<div class="main-container container" ui-view></div>
 
 <div class="navbar navbar-inverse footer">
       <p class="navbar-text navbar-left">WDI Project 4 - Created by Rami Burpee</p>
@@ -48,6 +47,8 @@
 <style>
 .search-bar {
   position: relative;
+  width: 300px;
+  top: 8px;
 }
 .search-spinner {
   display: none;
@@ -58,7 +59,6 @@
 .footer {
   position: relative;
   margin-bottom: 0;
-  height: 50px;
 }
 .gb-footer-link {
   margin-right: 10px;
