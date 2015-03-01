@@ -1,11 +1,13 @@
 <h1>Profile</h1>
 <div class="row">
   <div class="col-sm-9">
-    <%= image_tag "avatar-lg.jpg", class:'img-thumbnail pull-left' %>
+    <%= image_tag "avatar-lg.jpg", class:'img-thumbnail pull-left avatar-lg' %>
     <h2>{{currentUser.username}}</h2>
     <h5>Member since: {{currentUser.created_at | date}}</h5>
   </div>
 </div>
+<br>
+<!-- Need to make these links go to the correct shelf filter -->
 <div class="row">
   <div class="col-sm-9">
   <h4>{{currentUser.username}}'s shelves</h4>
@@ -23,7 +25,7 @@
     <h4>{{currentUser.username}}'s latest ratings</h4>
     <hr>
     <div class="pull-left" ng-repeat="game in currentUser.games | limitTo:20">
-      <a ui-sref="game-detail({id: game.giant_bomb_id})"><img ng-src="{{game.thumb_image}}" class="img-thumbnail profile-rating-image"></a>
+      <a ui-sref="game-detail({id: game.giant_bomb_id})"><img ng-src="{{game.thumb_image}}" class="img-thumbnail profile-image"></a>
     </div>
   </div>
 </div>
@@ -31,13 +33,81 @@
   <br>
   <div class="col-sm-9">
     <h4>{{currentUser.username}}'s activity</h4>
+    <hr>
+
+    <div class="panel panel-default" ng-repeat="a in activities | orderBy:'-updated_at' | limitTo:20">
+      <div class="panel-heading activity-heading purple">
+        <%= image_tag "avatar.jpg", class:'pull-left' %>
+        <div ng-if="a.shelf">
+          <p class="pull-left">{{currentUser.username}}&nbsp;{{a.created_at == a.updated_at ? "added " : "moved "}}<a ui-sref="game-detail({id: games[a.game_id].giant_bomb_id})">{{games[a.game_id].name}}</a> to their {{a.shelf}} shelf</p>
+        </div>
+        <div ng-if="a.rating">
+          <p class="pull-left">{{currentUser.username}}&nbsp;{{a.created_at == a.updated_at ? "added " : "updated "}}their review for <a ui-sref="game-detail({id: games[a.game_id].giant_bomb_id})">{{games[a.game_id].name}}</a></p>
+        </div>
+      </div>
+      <div class="activity-body container">
+          <a ui-sref="game-detail({id: games[a.game_id].giant_bomb_id})">
+            <img ng-src="{{games[a.game_id].thumb_image}}" class="img-thumbnail profile-image pull-left">
+          </a>
+
+          <div ng-if="a.shelf" class="btn-group games">
+            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'playing'"><i class="fa fa-gamepad fa-lg"></i></label>
+            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'played'"><i class="fa fa-check-circle fa-lg"></i></label>
+            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+          </div>
+          <div ng-if="a.rating">
+            <span>
+              &nbsp;&nbsp;Rating:&nbsp;
+              <i ng-repeat="s in [1,2,3,4,5]" ng-class="{'fa-star':s<=a.rating, 'fa-star-o':s>a.rating}" class="fa fa-lg star-gold"></i>
+            </span>
+            <br>
+            <span ng-if="a.text">
+              &nbsp;&nbsp;Review:
+              <i>{{a.text}}</i>
+            </span>
+          </div>
+          <div class="clearfix"></div>
+          <span class="text-muted activity-date"><small>{{a.updated_at | date}}</small></span>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <style>
-.profile-rating-image {
+.avatar-lg {
+  margin-right: 15px;
+}
+.activity-body {
+  padding: 5px;
+}
+.activity-body div {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.activity-date {
+  margin-left: 5px;
+}
+.activity-heading {
+  height: 52px;
+  padding: 3px;
+}
+.activity-heading p {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.activity-heading a {
+  color: white;
+}
+
+.no-click {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.profile-image {
   width: 80px;
   height: 80px;
+  display: block;
 
 }
 hr {

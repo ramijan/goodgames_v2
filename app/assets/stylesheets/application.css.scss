@@ -30,8 +30,13 @@ $snes-light-purple: #8F8291;
 .main-container {
   min-height: 550px
 }
+.light-purple {
+  background-color: $snes-light-purple !important;
+}
 .purple {
-  background-color: $snes-purple !important; 
+  background-color: $snes-purple !important;
+  color: white !important;
+  text-shadow: 1px 1px black; 
 }
 
 body {

@@ -5,13 +5,20 @@ angular
     $http.get('/api/currentuser').success(function(data){
       if(data) {
         $scope.currentUser = data;
+        $scope.activities = $scope.currentUser.user_game_links.concat($scope.currentUser.reviews);
+        
+        $scope.games = {};
+        var g = $scope.currentUser.games;
+        for(var i = 0; i < g.length; i++) {
+          $scope.games[g[i].id] = {thumb_image: g[i].thumb_image, name: g[i].name, giant_bomb_id: g[i].giant_bomb_id};
+        }
 
-        getShelfCounts();
+        setShelfCounts();
       }
     });
 
 
-    function getShelfCounts() {
+    function setShelfCounts() {
       $scope.played = [];
       $scope.playing = [];
       $scope.backlog = [];

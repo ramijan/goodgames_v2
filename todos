@@ -3,20 +3,31 @@ game details
   # add reviews at bottom
   # work on review modal
   # add flash notice for updating rating and shelf
+
 search
   pagination
+  make rating and shelves work
+
 mygames
   pagination
   better dates for release
-profile page
+
+# profile page
+
 welcome page
-footer
+
+# footer
+
 about/contact
+
+home page
 
 factories
   star display factory
   # flash factory
   resource?
+
+User authentication in angular
 
 # passenger
 
@@ -31,5 +42,6 @@ factories
 
 stretch goals
   view other user profiles
+  view other peoples game lists
   add custom shelves
   sorting and filtering
