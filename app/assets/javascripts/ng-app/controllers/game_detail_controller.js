@@ -155,6 +155,11 @@ angular.module('goodGames')
       $scope.starCounts[$scope.review.rating] += 1;
       $scope.oldRating = $scope.review.rating;
 
+      if(!$scope.link) {
+        $scope.link = {};
+        $scope.link.shelf = 'played';
+      }
+
     }
 
 
