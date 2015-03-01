@@ -28,6 +28,14 @@ class Api::ReviewsController < ApplicationController
     if current_user
       review = Review.new(review_params)
       review.user = current_user
+
+      # add link if none exists (default to played shelf)
+      link = UserGameLink.find_by(game_id: review['game_id'], user_id: current_user.id)
+      if link.nil?
+        UserGameLink.create(game_id: review['game_id'], user_id: current_user.id, shelf: 'played')
+      end
+
+
       if review.save
         render json: review, status: 200
       else
