@@ -66,7 +66,7 @@ class Api::GamesController < ApplicationController
 
     link_count = game.users.count
 
-    render json: {game: game, link: link, link_count: link_count} #, reviews: reviews, review: review}
+    render json: {game: game, link: link, link_count: link_count}
 
   end
 

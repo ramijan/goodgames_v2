@@ -21,7 +21,6 @@ angular
     });
 
     $scope.addShelf = function(shelf, link) {
-      console.log('flash' + link.id);
       Flash.flashIn('shelf-flash-'+link.id);
       $http.put('/api/links/' + link.id, {user_game_link: {shelf: shelf}}).success(function(){
         Flash.flashOut('shelf-flash-'+link.id);

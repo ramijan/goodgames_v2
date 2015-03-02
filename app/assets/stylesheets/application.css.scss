@@ -23,6 +23,10 @@ $snes-dark-gray: #95969D;
 $snes-purple: #80379C;
 $snes-light-purple: #8F8291;
 
+.no-click {
+  cursor: not-allowed;
+  pointer-events: none;
+}
 .navbar {
   border-radius: 0;
   border: 0

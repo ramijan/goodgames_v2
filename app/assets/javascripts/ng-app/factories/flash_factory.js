@@ -13,7 +13,7 @@ angular
           elt.fadeOut(function(){
             $(this).empty();
           });
-        }, 1000);
+        }, 1500);
       }
     };
 
