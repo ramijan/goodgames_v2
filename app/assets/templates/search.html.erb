@@ -2,7 +2,7 @@
   <div class="col-sm-12 col-md-9">
     <h2>Search results ({{games.length || 0}})</h2>
     <p class="no-results" ng-show="!games || games.length==0">No results found</p>
-    <div class="game-row panel panel-default row" ng-repeat="game in games">
+    <div class="animate-repeat game-row panel panel-default row" ng-repeat="game in tenGames">
       <div class="game-image col-sm-2">
         <a ui-sref="game-detail({id: game.id})"><img class="img-thumbnail search-img" ng-src="{{game.image.thumb_url}}"></a>
       </div>  
@@ -26,12 +26,28 @@
         </div>&nbsp;&nbsp;<span class="{{'shelf-flash-'+game.id}}"></span>
       </div>
     </div>
+    <div class="pagination-wrapper">
+      <pagination ng-show="games.length>10" items-per-page="10" total-items="games.length" ng-model="searchPage" class="pagination" ng-change="pageChanged(searchPage)" previous-text="&lsaquo;" next-text="&rsaquo;"></pagination>
+    </div>
   </div>
 </div>
-
 
 <style>
 .game-name {
   font-weight: 600;
+}
+.pagination-wrapper {
+  text-align: center;
+}
+.pagination .active a {
+  background-color: #80379C;
+  border-color: #80379C;
+}
+.pagination a {
+  color: #80379C;
+}
+.pagination .active a:hover {
+  background-color: #95969D;
+  border-color: #80379C;
 }
 </style>

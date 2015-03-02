@@ -2,6 +2,8 @@ angular
   .module('goodGames')
   .controller('SearchCtrl', ['$scope', '$http', '$injector', '$rootScope', 'Flash', function($scope, $http, $injector, $rootScope, Flash) {
 
+    $rootScope.searchPage = 1;
+
     $scope.getGames = function() {
       $('.search-spinner').show();
       $http.get("/api/search/?query=" + $scope.query)
@@ -17,7 +19,15 @@ angular
           $injector.get('$state').transitionTo('search');
           $('.search-spinner').hide();
 
+          $rootScope.tenGames = $rootScope.games.slice(0, 10);
+
       });
+    };
+
+    $scope.pageChanged = function(page) {
+      var start = 10 * (page - 1);
+      $rootScope.tenGames = $rootScope.games.slice(start, start+10);
+      window.scrollTo(0,0);
     };
 
 
