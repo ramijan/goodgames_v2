@@ -8,11 +8,11 @@ angular.module('goodGames')
             backdropClass: 'review-backdrop'
           });
         };
-        $scope.signup = function() {
-          $modal.open({
-            templateUrl: 'signup.html'
-          });
-        };
+        // $scope.signup = function() {
+        //   $modal.open({
+        //     templateUrl: 'signup.html'
+        //   });
+        // };
 
       $scope.logout = function() {
         $http.delete('/api/logout').success(function(){
