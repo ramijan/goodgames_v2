@@ -15,24 +15,22 @@
         <%= image_tag 'spinner.gif', class:'search-spinner' %>
       </div>
     </div>
+    <p class="navbar-text" ng-if="currentUser"><a class="navbar-link" ui-sref="games">MY GAMES</a></p>
     <a class="navbar-link" ui-sref="welcome">Welcome</a>
     <a class="navbar-link" ui-sref="intro">Introduction</a>
     <a class="navbar-link" ui-sref="profile-edit">profile-edit</a>
     <div class="navbar-right navbar-text">
     <div ng-if="currentUser">
-        <a class="navbar-link" ui-sref="games">MY GAMES</a>
         <a class="navbar-link" ui-sref="profile">{{currentUser.username | uppercase}}</a> | 
-        <a href='' ng-click="logout()">Logout</a>
+        <a href='' class="navbar-link" ng-click="logout()">Logout</a>
         </div>
       <div ng-if="!currentUser">
-        <a href='' ng-click="login()">Login</a> | 
-        <a href='' ng-click="signup()">Sign up</a>
+        <a href='' class="navbar-link" ng-click="login()">Login</a> | 
+        <a href='' class="navbar-link" ng-click="signup()">Sign up</a>
         </div>
     </div>
   </div>
 </div>
-
-{{currentUser.username}}
 
 <div class="main-container container animate-repeat" ui-view></div>
 
@@ -82,6 +80,7 @@
 }
 .navbar-brand {
   padding: 5px 15px;
+  text-shadow: 1px 1px black;
 }
 
 
