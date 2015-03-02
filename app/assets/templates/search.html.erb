@@ -17,12 +17,12 @@
         <p><span class="badge" ng-repeat="platform in game.platforms">{{platform.name}}</span></p>
         <p>
           <small>{{game.deck}}</small><br>
-          <small class="text-muted">My Rating: </small><rating ng-model="ratings[game.id].userRating" max="5" state-on="'fa fa-star star-gold'" state-off="'fa fa-star'" ng-change="currentUser ? addRating(game.id) : goToLogin()" class="rating-bar"></rating>&nbsp;&nbsp;<span class="{{'rating-flash-'+game.id}}"></span>
+          <small class="text-muted">My Rating: </small><rating ng-model="ratings[game.id].userRating" max="5" state-on="'fa fa-star star-gold'" state-off="'fa fa-star'" ng-change="currentUser ? addRating(game.id) : login()" class="rating-bar"></rating>&nbsp;&nbsp;<span class="{{'rating-flash-'+game.id}}"></span>
         </p>
         <div class="btn-group">
-          <label tooltip="Playing" tooltip-placement='bottom' tooltip-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="userShelves[game.id].shelf" btn-radio="'playing'" ng-click="currentUser ? addShelf(game.id) : goToLogin()"><i class="fa fa-gamepad fa-lg"></i></label>
-          <label tooltip="Played" tooltip-placement='bottom' tooltip-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="userShelves[game.id].shelf" btn-radio="'played'" ng-click="currentUser ? addShelf(game.id) : goToLogin()"><i class="fa fa-check-circle fa-lg"></i></label>
-          <label tooltip="Backlog" tooltip-placement='bottom' tooltip-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="userShelves[game.id].shelf" btn-radio="'backlog'" ng-click="currentUser ? addShelf(game.id) : goToLogin()"><i class="fa fa-bookmark fa-lg"></i></label>
+          <label tooltip="Playing" tooltip-placement='bottom' tooltip-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="userShelves[game.id].shelf" btn-radio="'playing'" ng-click="currentUser ? addShelf(game.id) : login()"><i class="fa fa-gamepad fa-lg"></i></label>
+          <label tooltip="Played" tooltip-placement='bottom' tooltip-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="userShelves[game.id].shelf" btn-radio="'played'" ng-click="currentUser ? addShelf(game.id) : login()"><i class="fa fa-check-circle fa-lg"></i></label>
+          <label tooltip="Backlog" tooltip-placement='bottom' tooltip-trigger="mouseenter" class="btn btn-default btn-sm" ng-model="userShelves[game.id].shelf" btn-radio="'backlog'" ng-click="currentUser ? addShelf(game.id) : login()"><i class="fa fa-bookmark fa-lg"></i></label>
         </div>&nbsp;&nbsp;<span class="{{'shelf-flash-'+game.id}}"></span>
       </div>
     </div>

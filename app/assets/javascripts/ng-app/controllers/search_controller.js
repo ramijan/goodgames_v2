@@ -73,10 +73,6 @@ angular
       });
     };
 
-    $scope.goToLogin = function() {
-      location.pathname = "/login";
-    };
-
     $scope.addRating = function(game_id) {
       $http.get('/api/games/' + game_id).success(function(data){
         var game = data.game;

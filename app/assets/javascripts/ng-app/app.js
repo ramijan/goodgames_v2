@@ -9,7 +9,10 @@ angular
       .state('home', {
         url: '/',
         templateUrl: 'home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        onEnter: function($rootScope, $state) {
+          if(!$rootScope.currentUser) $state.go('welcome');
+        }
       })
       .state('intro', {
         url: '/introduction',
@@ -27,7 +30,10 @@ angular
       .state('games', {
         url: '/games',
         templateUrl: 'games.html',
-        controller: 'GamesCtrl'
+        controller: 'GamesCtrl',
+        onEnter: function($rootScope, $state) {
+          if(!$rootScope.currentUser) $state.go('welcome');
+        }
       })
       .state('game-detail', {
         url: '/game/:id',
@@ -37,7 +43,10 @@ angular
       .state('profile', {
         url: '/profile',
         templateUrl: 'profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        onEnter: function($rootScope, $state) {
+          if(!$rootScope.currentUser) $state.go('welcome');
+        }
       })
       .state('profile-edit', {
         url: '/profile-edit',

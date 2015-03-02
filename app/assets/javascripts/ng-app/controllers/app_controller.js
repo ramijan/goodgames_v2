@@ -1,6 +1,6 @@
 angular.module('goodGames')
-    .controller('NavCtrl', ['$scope', '$modal', '$http', '$rootScope', function ($scope, $modal, $http, $rootScope) {
-        $scope.login = function() {
+    .controller('NavCtrl', ['$scope', '$modal', '$http', '$rootScope', '$state', function ($scope, $modal, $http, $rootScope, $state) {
+        $rootScope.login = function() {
           $modal.open({
             templateUrl: 'login.html',
             controller: 'AuthCtrl',
@@ -8,15 +8,11 @@ angular.module('goodGames')
             backdropClass: 'review-backdrop'
           });
         };
-        // $scope.signup = function() {
-        //   $modal.open({
-        //     templateUrl: 'signup.html'
-        //   });
-        // };
 
       $scope.logout = function() {
         $http.delete('/api/logout').success(function(){
         $rootScope.currentUser = null;
+        $state.go('welcome');
       });
     };
     }]);
