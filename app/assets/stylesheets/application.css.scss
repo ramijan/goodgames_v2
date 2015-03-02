@@ -23,6 +23,10 @@ $snes-dark-gray: #95969D;
 $snes-purple: #80379C;
 $snes-light-purple: #8F8291;
 
+.primary-font {
+  font-family: 'Play', sans-serif;
+}
+
 .no-click {
   cursor: not-allowed;
   pointer-events: none;
@@ -106,4 +110,48 @@ body {
 .animate-repeat.ng-enter.ng-enter-active {
   opacity:1;
   max-height:40px;
+}
+
+.game-img {
+  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+.image-col {
+  text-align: center;
+}
+.review-button {
+  background-color: #80379C;
+  color: white;
+}
+.review-button:hover {
+  color: white;
+}
+.review-modal {
+  top: 20%;
+}
+.review-backdrop {
+  height: 1600px;
+}
+.star-rating-bars {
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+.ratings-heading {
+  background-color: #D1D0D8 !important;
+}
+.shelf-flash {
+  padding-top: 10px;
+  margin: auto;
+}
+.avatar {
+  float: left;
+  margin-top: 2px;
+  margin-right: 10px;
+  margin-left: 7px;
+}
+.user-reviews {
+  padding-top: 5px;
 }
