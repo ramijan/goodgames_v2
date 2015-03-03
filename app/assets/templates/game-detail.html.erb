@@ -66,9 +66,9 @@
       <progressbar class="progress-striped active" type="danger" value="starCounts[1]/reviews.length * 100">{{starCounts[1]}}</progressbar>
       </div>
     </div>
-    <div class="user-reviews panel panel-default" ng-repeat="review in reviews">
+    <div class="user-reviews panel panel-default" ng-repeat="review in reviews | orderBy:'-updated_at'">
     <%= image_tag 'avatar.jpg', class:'avatar' %>
-      <p>{{review.user.username}} rated it {{review.rating}} stars</p>
+      <p>{{review.user.username}} rated it <i ng-repeat="s in [1,2,3,4,5]" ng-class="{'fa-star':s<=review.rating, 'fa-star-o':s>review.rating}"class="fa star-gold"></i></p>
       <p><i>{{review.text }}</i></p> 
       <p>&nbsp;&nbsp;<small>Posted {{ review.created_at | date }}</small></p>
     </div>
