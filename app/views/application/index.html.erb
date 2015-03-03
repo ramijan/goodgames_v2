@@ -1,5 +1,16 @@
 <%= render 'header' %>
 
+<!-- MAIN ANGULAR UI-VIEW -->
 <div class="main-container container animate-repeat" ui-view></div>
 
+
 <%= render 'footer' %>
+
+
+<script>
+  <% if current_user %>
+    var loggedIn = true;
+  <% else %>
+    var loggedIn = false;
+  <% end %>
+</script>

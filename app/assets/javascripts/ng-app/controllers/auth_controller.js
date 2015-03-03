@@ -10,6 +10,7 @@ angular
           $http.get('/api/currentuser').success(function(data){
             if(data) {
               $rootScope.currentUser = data;
+              loggedIn = true;
 
               $rootScope.userShelves = {};
               for(var i = 0; i < data.games.length; i++) {

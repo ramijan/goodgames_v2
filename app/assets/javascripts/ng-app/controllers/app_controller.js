@@ -13,6 +13,7 @@ angular.module('goodGames')
         $http.delete('/api/logout').success(function(){
         $rootScope.currentUser = null;
         $state.go('welcome');
+        loggedIn = false;
       });
     };
     }]);
