@@ -24,7 +24,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   def recent
-    reviews = Review.order('updated_at desc').limit(20)
+    reviews = Review.includes(:user, :game).order('updated_at desc').limit(20)
     render json: reviews, only: [:rating, :text, :updated_at, :created_at], 
                           include: {
                             user: {only: :username}, 

@@ -1,8 +1,12 @@
 <div class="row">
-<div class="col-md-4">
-<h3 class="primary-font">News</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec neque euismod est rutrum elementum. Maecenas arcu orci, hendrerit vel porta et, finibus eu risus. Vivamus mauris purus, ultricies eget interdum sit amet, scelerisque ac sem. Maecenas metus urna, mattis eu sodales in, lobortis id lectus. Duis consectetur urna placerat quam tempus, eget interdum dui finibus. Aliquam volutpat elit nec eros feugiat, posuere ornare quam congue. Vestibulum sapien leo, sodales et vulputate vel, venenatis et leo. Aenean sit amet feugiat ante. Ut tristique pellentesque ipsum et posuere.</p>
-</div>
+  <div class="col-md-4">
+  <h3 class="primary-font">News</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec neque euismod est rutrum elementum. Maecenas arcu orci, hendrerit vel porta et, finibus eu risus. Vivamus mauris purus, ultricies eget interdum sit amet, scelerisque ac sem. Maecenas metus urna, mattis eu sodales in, lobortis id lectus. Duis consectetur urna placerat quam tempus, eget interdum dui finibus. Aliquam volutpat elit nec eros feugiat, posuere ornare quam congue. Vestibulum sapien leo, sodales et vulputate vel, venenatis et leo. Aenean sit amet feugiat ante. Ut tristique pellentesque ipsum et posuere.</p>
+  <h3 class="primary-font">Featured Game</h3>
+  <a ui-sref="game-detail({id: 16909})">
+  <img class="featured img-thumbnail" src="http://static.giantbomb.com/uploads/scale_medium/8/82063/2577246-me1.jpg">
+  </a>
+  </div>
 <div class="col-md-8">
   <h3 class="primary-font">Recent activity</h3>
   <div class="panel panel-default" ng-repeat="a in recentActivities | orderBy:'-updated_at' | limitTo:25">
@@ -45,5 +49,8 @@
 <style>
 p.rating-text {
   margin-right: 10px;
+}
+.featured {
+  width: 100%;
 }
 </style>
