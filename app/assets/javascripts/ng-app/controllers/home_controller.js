@@ -1,5 +1,5 @@
 angular.module('goodGames')
-    .controller('HomeCtrl', ['$scope', '$http', function($scope, $http) {
+    .controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$state', function($scope, $http, $rootScope, $state) {
 
       $http.get('/api/recentreviews').success(function(data){
         var recent = data;

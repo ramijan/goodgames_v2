@@ -42,49 +42,11 @@
     <div class="panel panel-default">
       <div class="panel-heading shelf-heading"><b>SHELVES<b></div>
       <ul class="nav nav-pills nav-stacked">
-        <li role="presentation" class="active" data-toggle="pill"><a ng-click="filterShelf('all')">All ({{allLinks.length}})</a></li>
-        <li role="presentation" data-toggle="pill"><a ng-click="filterShelf('playing')">Playing ({{playing.length}})</a></li>
-        <li role="presentation" data-toggle="pill"><a ng-click="filterShelf('played')">Played ({{played.length}})</a></li>
-        <li role="presentation" data-toggle="pill"><a ng-click="filterShelf('backlog')">Backlog ({{backlog.length}})</a></li>
+        <li role="presentation" class="shelf-filter active" data-toggle="pill"><a ng-click="filterShelf('all')">All ({{allLinks.length}})</a></li>
+        <li role="presentation" class="shelf-filter" data-toggle="pill"><a ng-click="filterShelf('playing')">Playing ({{playing.length}})</a></li>
+        <li role="presentation" class="shelf-filter" data-toggle="pill"><a ng-click="filterShelf('played')">Played ({{played.length}})</a></li>
+        <li role="presentation" class="shelf-filter" data-toggle="pill"><a ng-click="filterShelf('backlog')">Backlog ({{backlog.length}})</a></li>
       </ul>
     </div>
   </div>
 </div>
-
-<style>
-li.active > a {
-  background-color: #80379C !important;
-}
-.btn-group.games {
-  margin-top: 5px;
-}
-.table-img {
-  width: 100px;
-}
-.td-img {
-  width: 125px;
-}
-.td-name {
-  width: 200px;
-}
-th {
-  color: white;
-  font-size: 14px;  
-}
-th a:hover {
-  color: white;
-}
-.game-table-row {
-  height: 125px;
-}
-.sort-link {
-  cursor: pointer;
-  color: white;
-}
-.shelf-heading {
-  background-color: white !important;
-}
-.my-games-header {
-  padding-left: 20px;
-}
-</style>

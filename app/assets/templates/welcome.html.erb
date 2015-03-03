@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-md-8">
 <h1 class="primary-font">good<b>games</b></h1>
 <h3 class="primary-font">Keep track of your game collection and share your reviews with friends</h3>
   </div>
-  <div class="col-sm-4">
+  <div class="col-md-4">
   <div ng-if="!currentUser" class="signup-container">
   <h3>Sign up now!</h3>
   <form>
@@ -33,25 +33,3 @@
 </div>
 
 </div>
-
-<style>
-.signup-alert {
-  padding: 0;
-  height: 30px;
-}
-.signup-container.ng-enter, .signup-container.ng-leave {
-  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-}
-
-.signup-container.ng-enter,
-.signup-container.ng-leave.ng-leave-active {
-  opacity:0;
-}
-
-.signup-container.ng-leave,
-.signup-container.ng-enter.ng-enter-active {
-  opacity:1;
-}
-
-</style>
