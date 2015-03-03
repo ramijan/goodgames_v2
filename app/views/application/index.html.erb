@@ -40,18 +40,4 @@
 
 <div class="main-container container animate-repeat" ui-view></div>
 
-<div class="navbar navbar-inverse footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 footer-left-text">
-        <p class="navbar-text navbar-left">WDI Project 4 - Created by Rami Burpee</p>
-        <a class="gh-footer-link navbar-left navbar-link" href="https://github.com/ramijan/goodgames_v2" target="_blank"><i class="fa fa-github fa-2x"></i></a>
-        <a class="li-footer-link navbar-left navbar-link" href="https://www.linkedin.com/pub/rami-burpee/18/8b8/a56" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
-      </div>
-      <div class="col-sm-6">
-        <p class="navbar-text navbar-right">Powered by:&nbsp; 
-        <a class="gb-footer-link" href="http://www.giantbomb.com" target="_blank"><%= image_tag 'giant-bomb-logo.png', height:'40' %></a></p>
-      </div>
-    </div>
-  </div>  
-</div>
+<%= render 'footer' %>
