@@ -47,9 +47,9 @@
       </tr>
     </table>
     <h4>My rating:</h4>
-    <rating ng-model="review.rating" ng-change="addRating()" max="5" state-on="'fa fa-star fa-2x star-gold'" state-off="'fa fa-star fa-2x'" class="rating-bar"></rating>&nbsp;&nbsp;<span class="rating-flash"></span>
+    <rating ng-model="review.rating" ng-change="currentUser ? addRating() : login()" max="5" state-on="'fa fa-star fa-2x star-gold'" state-off="'fa fa-star fa-2x'" class="rating-bar"></rating>&nbsp;&nbsp;<span class="rating-flash"></span>
     <br><br>
-    <button class="btn btn-default form-control review-button" ng-click="openReviewModal()">{{ review.text ? 'Edit ' : 'Add '}}your review</button>
+    <button class="btn btn-default form-control review-button" ng-click="currentUser ? openReviewModal() : login()">{{ review.text ? 'Edit ' : 'Add '}}your review</button>
     <br><br>
     <div class="panel panel-default">
       <div class="panel-heading ratings-heading"><b>User ratings and reviews for {{game.name}}</b></div>

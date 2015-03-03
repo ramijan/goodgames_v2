@@ -15,16 +15,24 @@
         <%= image_tag 'spinner.gif', class:'search-spinner' %>
       </div>
     </div>
-    <p class="navbar-text" ng-if="currentUser"><a class="navbar-link" ui-sref="games">MY GAMES</a></p>
-    <a class="navbar-link" ui-sref="intro">Introduction</a>
     <div class="navbar-right navbar-text">
     <div ng-if="currentUser">
-        <a class="navbar-link" ui-sref="profile">{{currentUser.username | uppercase}}</a> | 
-        <a href='' class="navbar-link" ng-click="logout()">Logout</a>
-        </div>
+      <ul class="nav navbar-nav">
+        <li ng-if="currentUser"><a ui-sref="games">MY GAMES</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{currentUser.username | uppercase}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a class="navbar-link" ui-sref="profile">Profile</a></li>
+            <li><a href='' class="navbar-link" ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
       <div ng-if="!currentUser">
-        <a href='' class="navbar-link" ng-click="login()">Login</a> | 
-        <a class="navbar-link" ui-sref="welcome">Sign up</a>
+        <ul class="nav navbar-nav">
+        <li><a href='' class="navbar-link" ng-click="login()">Login</a></li>
+        <li><a class="navbar-link" ui-sref="welcome">Sign up</a></li>
+        </ul>
         </div>
     </div>
   </div>
@@ -80,6 +88,18 @@
   padding: 5px 15px;
   text-shadow: 1px 1px black;
 }
-
+.dropdown-menu a:hover {
+  background-color: #80379C !important;
+}
+.dropdown.open .dropdown-toggle {
+  background-color: #95969D !important;
+}
+.header {
+  height: 50px;
+}
+.nav > li > a {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
 </style>
