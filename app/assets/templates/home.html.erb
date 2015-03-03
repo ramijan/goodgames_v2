@@ -1,6 +1,49 @@
-<div class="container">
-    <h1>The Home View!</h1>
-    <ul>
-        <li ng-repeat="thing in things">{{thing}}</li>
-    </ul>
+<div class="row">
+<div class="col-md-4">
+<h3>News</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec neque euismod est rutrum elementum. Maecenas arcu orci, hendrerit vel porta et, finibus eu risus. Vivamus mauris purus, ultricies eget interdum sit amet, scelerisque ac sem. Maecenas metus urna, mattis eu sodales in, lobortis id lectus. Duis consectetur urna placerat quam tempus, eget interdum dui finibus. Aliquam volutpat elit nec eros feugiat, posuere ornare quam congue. Vestibulum sapien leo, sodales et vulputate vel, venenatis et leo. Aenean sit amet feugiat ante. Ut tristique pellentesque ipsum et posuere.</p>
 </div>
+<div class="col-md-8">
+  <h3>Recent activity</h3>
+  <div class="panel panel-default" ng-repeat="a in recentActivities | orderBy:'-updated_at' | limitTo:25">
+      <div class="panel-heading activity-heading purple">
+        <%= image_tag "avatar.jpg", class:'pull-left' %>
+        <div ng-if="a.shelf">
+          <p class="pull-left">{{a.user.username}}&nbsp;{{a.created_at == a.updated_at ? "added " : "moved "}}<a ui-sref="game-detail({id: a.game.giant_bomb_id})"><b><u>{{a.game.name}}</u></b></a> to their {{a.shelf}} shelf</p>
+        </div>
+        <div ng-if="a.rating">
+          <p class="pull-left">{{a.user.username}}&nbsp;{{a.created_at == a.updated_at ? "added " : "updated "}}their review for <a ui-sref="game-detail({id: a.game.giant_bomb_id})"><b><u>{{a.game.name}}</u></b></a></p>
+        </div>
+      </div>
+      <div class="activity-body">
+          <a ui-sref="game-detail({id: a.game.giant_bomb_id})">
+            <img ng-src="{{a.game.thumb_image}}" class="img-thumbnail profile-image pull-left">
+          </a>
+
+          <div ng-if="a.shelf" class="btn-group games">
+            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'playing'"><i class="fa fa-gamepad fa-lg"></i></label>
+            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'played'"><i class="fa fa-check-circle fa-lg"></i></label>
+            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+          </div>
+          <div ng-if="a.rating">
+            <span>
+              &nbsp;&nbsp;Rating:&nbsp;
+              <i ng-repeat="s in [1,2,3,4,5]" ng-class="{'fa-star':s<=a.rating, 'fa-star-o':s>a.rating}" class="fa fa-lg star-gold"></i>
+            </span>
+            <div ng-if="a.text">
+              <p class="rating-text">&nbsp;&nbsp;Review:
+              <i>{{a.text | limitTo: 300}}{{a.text.length > 300 ? '...' : ''}}</i></p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <span class="text-muted activity-date"><small>{{a.updated_at | date:'short'}}</small></span>
+      </div>
+    </div>
+    </div>
+</div>
+
+<style>
+p.rating-text {
+  margin-right: 10px;
+}
+</style>

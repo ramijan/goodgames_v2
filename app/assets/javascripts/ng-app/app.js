@@ -10,10 +10,6 @@ angular
         url: '/',
         templateUrl: 'home.html',
         controller: 'HomeCtrl',
-        /* Unfortunately this method is also redirecting logged in users if they refresh the page */
-        // onEnter: function($rootScope, $state) {   
-        //   if(!$rootScope.currentUser) $state.go('welcome');
-        // }
       })
       .state('intro', {
         url: '/introduction',
@@ -33,9 +29,6 @@ angular
         url: '/games',
         templateUrl: 'games.html',
         controller: 'GamesCtrl',
-        // onEnter: function($rootScope, $state) {
-        //   if(!$rootScope.currentUser) $state.go('welcome');
-        // }
       })
       .state('game-detail', {
         url: '/game/:id',
@@ -46,17 +39,6 @@ angular
         url: '/profile',
         templateUrl: 'profile.html',
         controller: 'ProfileCtrl',
-        // onEnter: function($rootScope, $state) {
-        //   if(!$rootScope.currentUser) $state.go('welcome');
-        // }
-      })
-      .state('profile-edit', {
-        url: '/profile-edit',
-        templateUrl: 'profile-edit.html'
-      })
-      .state('about', {
-        url: '/about',
-        templateUrl: 'about.html'
       });
 
     $urlRouterProvider.otherwise('/');

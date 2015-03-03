@@ -1,5 +1,14 @@
 class Api::UserGameLinksController < ApplicationController
 
+  def index
+    links = UserGameLink.order('updated_at desc').limit(20)
+    render json: links, only: [:shelf, :updated_at, :created_at], 
+                        include: {
+                          user: {only: :username},
+                          game: {only: [:name, :thumb_image, :giant_bomb_id]}
+                        }
+  end
+
   def create
 
     if current_user

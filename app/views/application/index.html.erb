@@ -1,4 +1,4 @@
-<div ng-controller="NavCtrl" class="navbar navbar-inverse">
+<div ng-controller="NavCtrl" class="navbar navbar-inverse header">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" ui-sref="home">
@@ -17,7 +17,6 @@
     </div>
     <p class="navbar-text" ng-if="currentUser"><a class="navbar-link" ui-sref="games">MY GAMES</a></p>
     <a class="navbar-link" ui-sref="intro">Introduction</a>
-    <a class="navbar-link" ui-sref="profile-edit">profile-edit</a>
     <div class="navbar-right navbar-text">
     <div ng-if="currentUser">
         <a class="navbar-link" ui-sref="profile">{{currentUser.username | uppercase}}</a> | 

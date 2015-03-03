@@ -23,6 +23,14 @@ class Api::ReviewsController < ApplicationController
     render json: reviews, only: [:id, :rating, :text, :created_at, :updated_at], include: {user: {only: [:username]}}
   end
 
+  def recent
+    reviews = Review.order('updated_at desc').limit(20)
+    render json: reviews, only: [:rating, :text, :updated_at, :created_at], 
+                          include: {
+                            user: {only: :username}, 
+                            game: {only: [:name, :thumb_image, :giant_bomb_id]}
+                          }
+  end
 
   def create
     if current_user

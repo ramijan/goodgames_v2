@@ -23,6 +23,11 @@ $snes-dark-gray: #95969D;
 $snes-purple: #80379C;
 $snes-light-purple: #8F8291;
 
+.header * {
+    font-family: 'Play', sans-serif !important;
+
+}
+
 .primary-font {
   font-family: 'Play', sans-serif;
 }
@@ -154,4 +159,39 @@ body {
 }
 .user-reviews {
   padding-top: 5px;
+}
+// from profile
+.avatar-lg {
+  margin-right: 15px;
+}
+.activity-body {
+  padding: 5px;
+}
+.activity-body div {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.activity-date {
+  margin-left: 5px;
+}
+.activity-heading {
+  height: 52px;
+  padding: 3px;
+}
+.activity-heading p {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.activity-heading a {
+  color: white;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  display: block;
+
+}
+hr {
+  border-color: lightgray;
 }

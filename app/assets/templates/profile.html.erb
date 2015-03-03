@@ -45,7 +45,7 @@
           <p class="pull-left">{{currentUser.username}}&nbsp;{{a.created_at == a.updated_at ? "added " : "updated "}}their review for <a ui-sref="game-detail({id: games[a.game_id].giant_bomb_id})">{{games[a.game_id].name}}</a></p>
         </div>
       </div>
-      <div class="activity-body container">
+      <div class="activity-body">
           <a ui-sref="game-detail({id: games[a.game_id].giant_bomb_id})">
             <img ng-src="{{games[a.game_id].thumb_image}}" class="img-thumbnail profile-image pull-left">
           </a>
@@ -61,10 +61,10 @@
               <i ng-repeat="s in [1,2,3,4,5]" ng-class="{'fa-star':s<=a.rating, 'fa-star-o':s>a.rating}" class="fa fa-lg star-gold"></i>
             </span>
             <br>
-            <span ng-if="a.text">
-              &nbsp;&nbsp;Review:
-              <i>{{a.text}}</i>
-            </span>
+            <div ng-if="a.text">
+              <p class="rating-text">&nbsp;&nbsp;Review:
+              <i>{{a.text}}</i></p>
+            </div>
           </div>
           <div class="clearfix"></div>
           <span class="text-muted activity-date"><small>{{a.updated_at | date}}</small></span>
@@ -73,40 +73,3 @@
 
   </div>
 </div>
-
-<style>
-.avatar-lg {
-  margin-right: 15px;
-}
-.activity-body {
-  padding: 5px;
-}
-.activity-body div {
-  margin-left: 10px;
-  margin-top: 10px;
-}
-.activity-date {
-  margin-left: 5px;
-}
-.activity-heading {
-  height: 52px;
-  padding: 3px;
-}
-.activity-heading p {
-  margin-left: 10px;
-  margin-top: 10px;
-}
-.activity-heading a {
-  color: white;
-}
-
-.profile-image {
-  width: 80px;
-  height: 80px;
-  display: block;
-
-}
-hr {
-  border-color: lightgray;
-}
-</style>
