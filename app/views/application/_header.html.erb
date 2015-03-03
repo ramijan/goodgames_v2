@@ -1,0 +1,39 @@
+<div ng-controller="NavCtrl" class="navbar navbar-inverse header">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="home">
+        <span class="primary-font h2">good<b>games</b></span>
+      </a>
+    </div>
+    <div class="navbar-left">
+      <div class="search-bar">
+        <form ng-controller="SearchCtrl" ng-submit="getGames()">
+          <div class="form-group">
+          <input type="text" ng-model="query" placeholder="Search games" class="form-control">
+          </div>
+        </form>
+        <%= image_tag 'spinner.gif', class:'search-spinner' %>
+      </div>
+    </div>
+    <div class="navbar-right navbar-text">
+    <div ng-if="currentUser">
+      <ul class="nav navbar-nav">
+        <li ng-if="currentUser"><a ui-sref="games">MY GAMES</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{currentUser.username | uppercase}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a class="navbar-link" ui-sref="profile">Profile</a></li>
+            <li><a href='' class="navbar-link" ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+      <div ng-if="!currentUser">
+        <ul class="nav navbar-nav">
+        <li><a href='' class="navbar-link" ng-click="login()">Login</a></li>
+        <li><a class="navbar-link" ui-sref="welcome">Sign up</a></li>
+        </ul>
+        </div>
+    </div>
+  </div>
+</div>
