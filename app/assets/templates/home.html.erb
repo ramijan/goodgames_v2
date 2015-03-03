@@ -1,10 +1,10 @@
 <div class="row">
 <div class="col-md-4">
-<h3>News</h3>
+<h3 class="primary-font">News</h3>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec neque euismod est rutrum elementum. Maecenas arcu orci, hendrerit vel porta et, finibus eu risus. Vivamus mauris purus, ultricies eget interdum sit amet, scelerisque ac sem. Maecenas metus urna, mattis eu sodales in, lobortis id lectus. Duis consectetur urna placerat quam tempus, eget interdum dui finibus. Aliquam volutpat elit nec eros feugiat, posuere ornare quam congue. Vestibulum sapien leo, sodales et vulputate vel, venenatis et leo. Aenean sit amet feugiat ante. Ut tristique pellentesque ipsum et posuere.</p>
 </div>
 <div class="col-md-8">
-  <h3>Recent activity</h3>
+  <h3 class="primary-font">Recent activity</h3>
   <div class="panel panel-default" ng-repeat="a in recentActivities | orderBy:'-updated_at' | limitTo:25">
       <div class="panel-heading activity-heading purple">
         <%= image_tag "avatar.jpg", class:'pull-left' %>
