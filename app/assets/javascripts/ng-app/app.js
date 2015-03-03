@@ -10,9 +10,10 @@ angular
         url: '/',
         templateUrl: 'home.html',
         controller: 'HomeCtrl',
-        onEnter: function($rootScope, $state) {
-          if(!$rootScope.currentUser) $state.go('welcome');
-        }
+        /* Unfortunately this method is also redirecting logged in users if they refresh the page */
+        // onEnter: function($rootScope, $state) {   
+        //   if(!$rootScope.currentUser) $state.go('welcome');
+        // }
       })
       .state('intro', {
         url: '/introduction',
@@ -20,7 +21,8 @@ angular
       })
       .state('welcome', {
         url: '/welcome',
-        templateUrl: 'welcome.html'
+        templateUrl: 'welcome.html',
+        controller: 'WelcomeCtrl'
       })
       .state('search', {
         url: '/search',
@@ -31,9 +33,9 @@ angular
         url: '/games',
         templateUrl: 'games.html',
         controller: 'GamesCtrl',
-        onEnter: function($rootScope, $state) {
-          if(!$rootScope.currentUser) $state.go('welcome');
-        }
+        // onEnter: function($rootScope, $state) {
+        //   if(!$rootScope.currentUser) $state.go('welcome');
+        // }
       })
       .state('game-detail', {
         url: '/game/:id',
@@ -44,9 +46,9 @@ angular
         url: '/profile',
         templateUrl: 'profile.html',
         controller: 'ProfileCtrl',
-        onEnter: function($rootScope, $state) {
-          if(!$rootScope.currentUser) $state.go('welcome');
-        }
+        // onEnter: function($rootScope, $state) {
+        //   if(!$rootScope.currentUser) $state.go('welcome');
+        // }
       })
       .state('profile-edit', {
         url: '/profile-edit',

@@ -5,8 +5,8 @@ game details
   # add flash notice for updating rating and shelf
 
 search
-  pagination
-  make rating and shelves work
+  # pagination
+  # make rating and shelves work
 
 mygames
   pagination
@@ -18,23 +18,26 @@ welcome page
 
 # footer
 
-about/contact
+# about/contact
 
 home page
+
+bug when logging in from search page.  afterwards ratings all count as creates rather than updates
 
 factories
   star display factory
   # flash factory
   resource?
 
-User authentication in angular
+# User authentication in angular
 
 # passenger
 
 Giant Bomb search should return all results if 100+
 
 
-
+profile edit page  - don't really need this until add more fields to user
+password reset page 
 
 
 
@@ -45,3 +48,6 @@ stretch goals
   view other peoples game lists
   add custom shelves
   sorting and filtering
+  friends
+  game suggestions
+  avatar photos
