@@ -18,12 +18,12 @@
       </div>
     </div>
 <!-- RIGHT SIDE LINKS -->
-    <div class="navbar-right navbar-text">
+    <div class="navbar-right">
       <div ng-if="currentUser">
         <ul class="nav navbar-nav">
-          <li ng-if="currentUser"><a ui-sref="games">MY GAMES</a></li>
+          <li ng-if="currentUser"><a class='top-highlight' ui-sref="games">MY GAMES</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{currentUser.username | uppercase}} <span class="caret"></span></a>
+            <a class='top-highlight' href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{currentUser.username | uppercase}} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a class="navbar-link" ui-sref="profile">Profile</a></li>
               <li><a href='' class="navbar-link" ng-click="logout()">Logout</a></li>
@@ -33,8 +33,8 @@
       </div>
       <div ng-if="!currentUser">
         <ul class="nav navbar-nav">
-          <li><a href='' class="navbar-link" ng-click="login()">Login</a></li>
-          <li><a class="navbar-link" ui-sref="welcome">Sign up</a></li>
+          <li><a href='' class="top-highlight navbar-link" ng-click="login()">Login</a></li>
+          <li><a class="top-highlight navbar-link" ui-sref="welcome">Sign up</a></li>
         </ul>
       </div>
     </div>

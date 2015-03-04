@@ -348,3 +348,19 @@ h3.login-form {
   padding-top: 0;
   padding-bottom: 0;
 }
+
+// highlight on header links
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  border-color: white;
+  background-color: #9D9D9D !important;
+}
+
+.top-highlight{
+  padding: 10px !important;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+.top-highlight:hover {
+  margin-top:0;
+  border-top: 4px solid white;
+}
