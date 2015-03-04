@@ -69,14 +69,14 @@ angular
     $scope.addShelf = function(game_id) {
       $http.get('/api/games/' + game_id).success(function(data){
         var game = data.game;
-
         Flash.flashIn('shelf-flash-'+game_id);
         if($rootScope.userShelves[game_id] && $rootScope.userShelves[game_id].id) {
-          $http.put('/api/links/' + $rootScope.userShelves[game_id].id, {user_game_link: {shelf: $rootScope.userShelves[game_id].shelf}}).success(function(){
+          $http.put('/api/links/' + $rootScope.userShelves[game_id].id, {user_game_link: {shelf: $rootScope.userShelves[game_id].shelf}}).success(function(data){
             Flash.flashOut('shelf-flash-'+game_id);
           });
         } else {
           $http.post('/api/links', {user_game_link: {shelf: $rootScope.userShelves[game_id].shelf, game_id: game.id}}).success(function(data){
+            $rootScope.userShelves[game_id] = data;  // this prevents bug where changing shelves after first shelf selection(before reload) caused multiple entries in db
             Flash.flashOut('shelf-flash-'+game_id);
           });
         }
@@ -87,9 +87,10 @@ angular
       $http.get('/api/games/' + game_id).success(function(data){
         var game = data.game;
         var rating = $rootScope.ratings[game_id] || {};
+
         Flash.flashIn('rating-flash-'+game_id);
         if(rating && rating.id) {
-          $http.put('/api/reviews/' + rating.id, {review: {rating: rating.userRating}}).success(function(){
+          $http.put('/api/reviews/' + rating.id, {review: {rating: rating.userRating}}).success(function(data){
             Flash.flashOut('rating-flash-'+game_id);
             rating.average = (rating.average * rating.total - rating.oldRating + rating.userRating) / rating.total;
             rating.oldRating = rating.userRating;

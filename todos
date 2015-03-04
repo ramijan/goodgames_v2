@@ -22,7 +22,9 @@ mygames
 
 # home page
 
-bug when logging in from search page.  afterwards ratings all count as creates rather than updates
+BUGS:
+  when logging in from search page.  afterwards ratings all count as creates rather than updates
+  when loggin in from welcome page, remain on welcome page.  should go to home
 
 factories
   star display factory
