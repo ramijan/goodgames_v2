@@ -47,7 +47,7 @@ class Api::ReviewsController < ApplicationController
       if review.save
         render json: review, status: 200
       else
-        render json: {errors: review.errors}, status: 400
+        render json: {errors: review.errors}
       end
     else
       render json: {rating: nil, errors: ["User not logged in"]}

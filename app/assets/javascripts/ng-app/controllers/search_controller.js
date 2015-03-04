@@ -101,6 +101,8 @@ angular
             if(rating.average) {
               rating.average = (rating.average * rating.total + rating.userRating) / (rating.total + 1);
               rating.oldRating = rating.userRating;
+              rating.id = data.id;
+              rating.total += 1;
             } else {
               rating.average = rating.userRating;
               rating.total = 1;
