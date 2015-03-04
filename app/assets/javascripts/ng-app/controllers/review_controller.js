@@ -3,6 +3,7 @@ angular
   .controller('ReviewCtrl', ['$scope', '$http', '$modalInstance', 'game', 'review', function($scope, $http, $modalInstance, game, review) {
     $scope.game = game;
     $scope.review = review;
+    $scope.isReviewPresent = review.text;
 
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
