@@ -76,7 +76,7 @@ angular
           });
         } else {
           $http.post('/api/links', {user_game_link: {shelf: $rootScope.userShelves[game_id].shelf, game_id: game.id}}).success(function(data){
-            $rootScope.userShelves[game_id] = data;  // this prevents bug where changing shelves after first shelf selection(before reload) caused multiple entries in db
+            if(!data.errors) $rootScope.userShelves[game_id] = data;  // this prevents bug where changing shelves after first shelf selection(before reload) caused multiple entries in db
             Flash.flashOut('shelf-flash-'+game_id);
           });
         }
@@ -110,8 +110,7 @@ angular
           });
         }
 
-        if(!$rootScope.userShelves[game_id]) $rootScope.userShelves[game_id]= {shelf: 'played'};
-
+        if(!$rootScope.userShelves[game_id]) $rootScope.userShelves[game_id]= {shelf: 'played', id: game.id};
       });
     };
 

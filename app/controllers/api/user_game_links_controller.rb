@@ -18,7 +18,7 @@ class Api::UserGameLinksController < ApplicationController
       if link.save
         render json: link, status: 200
       else
-        render json: {errors: link.errors}, status: 400
+        render json: {errors: link.errors}
       end
     else
       render json: {shelf: nil, errors: ["User not logged in"]}
