@@ -92,22 +92,26 @@ angular
         if(rating && rating.id) {
           $http.put('/api/reviews/' + rating.id, {review: {rating: rating.userRating}}).success(function(data){
             Flash.flashOut('rating-flash-'+game_id);
-            rating.average = (rating.average * rating.total - rating.oldRating + rating.userRating) / rating.total;
-            rating.oldRating = rating.userRating;
+            if(!data.errors) {
+              rating.average = (rating.average * rating.total - rating.oldRating + rating.userRating) / rating.total;
+              rating.oldRating = rating.userRating;
+            }
           });
         } else {
           $http.post('/api/reviews', {review: {rating: rating.userRating, game_id: game.id}}).success(function(data){
             Flash.flashOut('rating-flash-'+game_id);
-            if(rating.average) {
-              rating.average = (rating.average * rating.total + rating.userRating) / (rating.total + 1);
-              rating.oldRating = rating.userRating;
-              rating.id = data.id;
-              rating.total += 1;
-            } else {
-              rating.average = rating.userRating;
-              rating.total = 1;
-              rating.oldRating = rating.userRating;
-              rating.id = data.id;
+            if(!data.errors){
+              if(rating.average) {
+                rating.average = (rating.average * rating.total + rating.userRating) / (rating.total + 1);
+                rating.oldRating = rating.userRating;
+                rating.id = data.id;
+                rating.total += 1;
+              } else {
+                rating.average = rating.userRating;
+                rating.total = 1;
+                rating.oldRating = rating.userRating;
+                rating.id = data.id;
+              }
             }
           });
         }
