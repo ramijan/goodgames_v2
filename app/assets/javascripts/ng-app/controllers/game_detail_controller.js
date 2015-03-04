@@ -1,5 +1,5 @@
 angular.module('goodGames')
-  .controller('GameDetailCtrl', ['$scope', '$modal', '$http', '$stateParams', 'Flash', function ($scope, $modal, $http, $stateParams, Flash) {
+  .controller('GameDetailCtrl', ['$scope', '$modal', '$http', '$stateParams', 'Flash', '$rootScope', function ($scope, $modal, $http, $stateParams, Flash, $rootScope) {
 
     /************** Get game, user_game_link, and review data ***************/
 
@@ -67,6 +67,8 @@ angular.module('goodGames')
 
       modalInstance.result.then(function (review) {
         $scope.review = review;
+        $scope.review.user = {};
+        $scope.review.user.username = $rootScope.currentUser.username;
         updateReviews();
       });
     };
