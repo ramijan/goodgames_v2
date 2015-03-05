@@ -219,6 +219,17 @@ hr {
   opacity:1;
 }
 
+.welcome-detail {
+  height: 200px;
+  text-align: center;
+  border: 2px solid $snes-purple;
+  border-radius: 5px;
+  margin-left: 15px;
+}
+.welcome-button-display {
+  margin-top:-10px;
+}
+
 // games
 li.shelf-filter.active > a {
   background-color: #80379C !important;
