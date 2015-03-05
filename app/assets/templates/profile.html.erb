@@ -1,4 +1,6 @@
 <h1 class="primary-font">Profile</h1>
+
+<!-- USER DETAILS -->
 <div class="row">
   <div class="col-sm-9">
     <%= image_tag "avatar-lg.jpg", class:'img-thumbnail pull-left avatar-lg' %>
@@ -7,7 +9,9 @@
   </div>
 </div>
 <br>
-<!-- Need to make these links go to the correct shelf filter -->
+
+<!-- TODO: Need to make these links go to the correct shelf filter -->
+<!-- SHELF DISPLAY -->
 <div class="row">
   <div class="col-sm-9">
   <h4>{{currentUser.username}}'s shelves</h4>
@@ -20,6 +24,8 @@
   </table>
   </div>
 </div>
+
+<!-- RECENTLY RATED GAMES LIST -->
 <div class="row">
   <div class="col-sm-9">
     <h4>{{currentUser.username}}'s latest ratings</h4>
@@ -29,6 +35,8 @@
     </div>
   </div>
 </div>
+
+<!-- USER ACTIVITY LIST -->
 <div class="row">
   <br>
   <div class="col-sm-9">
@@ -46,30 +54,29 @@
         </div>
       </div>
       <div class="activity-body">
-          <a ui-sref="game-detail({id: games[a.game_id].giant_bomb_id})">
-            <img ng-src="{{games[a.game_id].thumb_image}}" class="img-thumbnail profile-image pull-left">
-          </a>
+        <a ui-sref="game-detail({id: games[a.game_id].giant_bomb_id})">
+          <img ng-src="{{games[a.game_id].thumb_image}}" class="img-thumbnail profile-image pull-left">
+        </a>
 
-          <div ng-if="a.shelf" class="btn-group games">
-            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'playing'"><i class="fa fa-gamepad fa-lg"></i></label>
-            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'played'"><i class="fa fa-check-circle fa-lg"></i></label>
-            <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+        <div ng-if="a.shelf" class="btn-group games">
+          <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'playing'"><i class="fa fa-gamepad fa-lg"></i></label>
+          <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'played'"><i class="fa fa-check-circle fa-lg"></i></label>
+          <label class="btn btn-default btn-sm no-click" ng-model="a.shelf" btn-radio="'backlog'"><i class="fa fa-bookmark fa-lg"></i></label>
+        </div>
+        <div ng-if="a.rating">
+          <span>
+            &nbsp;&nbsp;Rating:&nbsp;
+            <i ng-repeat="s in [1,2,3,4,5]" ng-class="{'fa-star':s<=a.rating, 'fa-star-o':s>a.rating}" class="fa fa-lg star-gold"></i>
+          </span>
+          <br>
+          <div ng-if="a.text">
+            <p class="rating-text">&nbsp;&nbsp;Review:
+            <i>{{a.text}}</i></p>
           </div>
-          <div ng-if="a.rating">
-            <span>
-              &nbsp;&nbsp;Rating:&nbsp;
-              <i ng-repeat="s in [1,2,3,4,5]" ng-class="{'fa-star':s<=a.rating, 'fa-star-o':s>a.rating}" class="fa fa-lg star-gold"></i>
-            </span>
-            <br>
-            <div ng-if="a.text">
-              <p class="rating-text">&nbsp;&nbsp;Review:
-              <i>{{a.text}}</i></p>
-            </div>
-          </div>
-          <div class="clearfix"></div>
-          <span class="text-muted activity-date"><small>{{a.updated_at | date}}</small></span>
+        </div>
+        <div class="clearfix"></div>
+        <span class="text-muted activity-date"><small>{{a.updated_at | date}}</small></span>
       </div>
     </div>
-
   </div>
 </div>

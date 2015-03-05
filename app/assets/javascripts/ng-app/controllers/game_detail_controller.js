@@ -1,8 +1,12 @@
-angular.module('goodGames')
+/*********************************************
+ *  Game detail page controller (game-detail.html.erb)
+ **********************************************/
+
+angular
+  .module('goodGames')
   .controller('GameDetailCtrl', ['$scope', '$modal', '$http', '$stateParams', 'Flash', '$rootScope', function ($scope, $modal, $http, $stateParams, Flash, $rootScope) {
 
-    /************** Get game, user_game_link, and review data ***************/
-
+    // get game data from db, then current user review for this game and all reviews
     $http.get('/api/games/' + $stateParams.id).success(function(data){
       $scope.game = data.game;
       $scope.release_date = getReleaseDate($scope.game);
@@ -22,7 +26,8 @@ angular.module('goodGames')
     });
 
 
-
+    // Triggered when user clicks on shelf buttons
+    // Determines whether should POST/PUT and creates/updates user_game_link / shelf in db
     $scope.addShelf = function(shelf) {
       Flash.flashIn('shelf-flash');
       if($scope.link && $scope.link.id) {
@@ -37,6 +42,8 @@ angular.module('goodGames')
       }
     };
 
+    // Triggered when user clicks rating stars
+    // Determines whether to POST/PUT and creates/updates user review
     $scope.addRating = function() {
       Flash.flashIn('rating-flash');
       if($scope.review && $scope.review.id) {
@@ -53,6 +60,8 @@ angular.module('goodGames')
       }
     };
 
+    // Triggered when user clicks the Add/Edit review button
+    // Opens review modal (review.html.erb // ReviewCtrl)
     $scope.openReviewModal = function() {
       var modalInstance = $modal.open({
         templateUrl: 'review.html',
@@ -73,8 +82,8 @@ angular.module('goodGames')
       });
     };
 
-
-
+    // helper to figure out date for release-date display
+    // used after $http.get call for game data
     function getReleaseDate( game ) {
       var date;
       if ( game.original_release_date ) {
@@ -95,6 +104,9 @@ angular.module('goodGames')
       return date;
     }
 
+    // calculates average rating for current game based on all reviews
+    // Used after initial reviews data downloaded and then after current user creates/updates
+    // their review
     function getAverageRating( reviews ) {
       if(reviews.length===0) return 0;
       var sum = 0;
@@ -104,6 +116,8 @@ angular.module('goodGames')
       return sum / reviews.length;
     }
 
+    // Assigned to scope after review data is downloaded and average rating calculated
+    // helper to tell average review star display what to show
     function getStars() {
       if($scope.reviews.length === 0) {
         return ['fa-star-o','fa-star-o','fa-star-o','fa-star-o','fa-star-o'];
@@ -127,6 +141,8 @@ angular.module('goodGames')
       return stars;
     }
 
+    // Called after reviews data downloaded and after user creates/updates review
+    // Creates data for the progressbar display
     function starCount() {
       $scope.starCounts = [0,0,0,0,0,0];
       $scope.reviewCount = $scope.reviews.length;
@@ -135,6 +151,8 @@ angular.module('goodGames')
       }
     }
 
+    // Updates all review related variables whenever user updates review/rating
+    // Helps make page responsive to user input
     function updateReviews() {
       var newReview = true;
       var index;
@@ -161,11 +179,7 @@ angular.module('goodGames')
         $scope.link = {};
         $scope.link.shelf = 'played';
       }
-
     }
-
-
-
   }]);
 
 

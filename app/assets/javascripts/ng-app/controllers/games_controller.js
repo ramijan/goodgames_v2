@@ -1,7 +1,18 @@
+/**********************************************
+ * Games list page controller (games.html.erb)
+ * where users games are displayed 
+ ***********************************************/
+
 angular
   .module('goodGames')
-  .controller('GamesCtrl', ['$scope', '$http', 'Flash', function($scope, $http, Flash) {
+  .controller('GamesCtrl', ['$scope', '$http', 'Flash', '$state', function($scope, $http, Flash, $state) {
 
+    // redirect to welcome page if not logged in
+    if(!loggedIn) $state.go('welcome');
+
+    // get all games that are on user's shelves, then
+    // get all user's reviews for those games and zip the data
+    // up together using nested loops
     $http.get('/api/games').success(function(data){
       $scope.allLinks = data;
       $scope.links = $scope.allLinks;
@@ -20,6 +31,8 @@ angular
       });
     });
 
+    // Triggered when user updates shelf.  Updates the game link shelf in database
+    // also updates $scope links for responsiveness
     $scope.addShelf = function(shelf, link) {
       Flash.flashIn('shelf-flash-'+link.id);
       $http.put('/api/links/' + link.id, {user_game_link: {shelf: shelf}}).success(function(){
@@ -34,6 +47,7 @@ angular
       });  
     };
 
+    // Triggered when user adds/updates review.  Creates/updates review in db
     $scope.addRating = function(link) {
       Flash.flashIn('rating-flash-'+link.id);
       if(link.review && link.review.id) {
@@ -47,6 +61,7 @@ angular
       }
     };
 
+    // helper for link data from api call.  sorts games into the different shelves for filtering
     function getShelfCounts() {
       $scope.played = [];
       $scope.playing = [];
@@ -59,14 +74,13 @@ angular
       }
     }
 
+    // Triggered when user changes shelf.  Filters games to only show selected shelf
     $scope.filterShelf = function(shelf) {
       if(shelf=='all') $scope.links = $scope.allLinks;
       else if(shelf == 'playing' && $scope.playing.length > 0) $scope.links = $scope.playing;
       else if(shelf == 'played' && $scope.played.length > 0) $scope.links = $scope.played;
       else if(shelf == 'backlog' && $scope.backlog.length > 0) $scope.links = $scope.backlog;
     };
-
-
   }]);
 
 

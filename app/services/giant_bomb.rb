@@ -1,5 +1,6 @@
 class GiantBomb
 
+  # Get search results from GiantBomb API
   def self.search(query)
 
     return {} if (query == nil || query.match(/^\s*$/))
@@ -17,6 +18,7 @@ class GiantBomb
   end
 
 
+  # Get game details from GiantBomb API
   def self.game(game_id)
     
     response = HTTParty.get( giant_bomb_game_url(game_id), query: {

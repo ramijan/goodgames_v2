@@ -1,7 +1,13 @@
+/***************************************
+ *  Welcome / Signup (welcome.html) page 
+ *  controller
+ **************************************/
+
 angular
   .module('goodGames')
   .controller('WelcomeCtrl', ['$scope', '$http', '$state', '$rootScope', function($scope, $http, $state, $rootScope){
 
+    // empty object to store data from sign up form
     $scope.user = {
       username: null,
       email: null,
@@ -9,6 +15,9 @@ angular
       password_confirmation: null
     };
 
+    // Called when user clicks the sign up button, submits the provided data to api/signup
+    // endpoint and updates certain variables afterwards to indicate logged in user and redirect
+    // to home page
     $scope.signup = function() {
       $http.post('api/signup', {user: $scope.user}).success(function(data) {
         if(data.errors) {
@@ -26,11 +35,8 @@ angular
                 });
               }, 2000);
             }
-
           });
         }
       });
     };
-
-
   }]);

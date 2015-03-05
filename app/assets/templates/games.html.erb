@@ -1,5 +1,7 @@
 <div class="row">
-    <h1 class="my-games-header primary-font">My Games ({{allLinks.length}})</h1>
+
+<!-- TABLE FOR GAME LIST DISPLAY -->
+  <h1 class="my-games-header primary-font">My Games ({{allLinks.length}})</h1>
   <div class="col-sm-9">
     <table class="table table-hover panel panel-default">
       <thead class="panel-heading purple">
@@ -36,8 +38,12 @@
         </tr>
       </tbody>
     </table>
+
+<!-- MESSAGE TO DISPLAY IF NO GAMES IN LIST -->
     <div ng-if="links.length===0" class="alert alert-info"><span class="h3"><span class="glyphicon glyphicon-exclamation-sign"></span> Use the search bar above to find games to add to your list!</span></div>
   </div>
+
+<!-- RIGHT SIDE SHELF SELECTOR -->
   <div class="col-sm-3">
     <div class="panel panel-default">
       <div class="panel-heading shelf-heading"><b>SHELVES<b></div>

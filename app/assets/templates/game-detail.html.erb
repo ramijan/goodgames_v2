@@ -1,4 +1,6 @@
 <div class="row">
+
+<!-- LEFT SIDE GAME IMAGE AND SHELF BUTTONS -->
   <div class="col-sm-3 image-col">
     <img class="game-img img-thumbnail" ng-src="{{game.medium_image}}">
     <div class="shelf-buttons">
@@ -12,6 +14,7 @@
     </div>
   </div>
 
+<!-- RIGHT SIDE GAME INFO DISPLAY -->
   <div class="col-sm-6">
     <h1>{{game.name}} <small>({{ game.original_release_date || game.expected_release_year || 'n/a' | limitTo : 4 }})</small></h1>
     <p>
@@ -46,6 +49,8 @@
         <td><small ng-repeat="f in game.franchises">{{f}}<br></small></td>
       </tr>
     </table>
+
+<!-- RIGHT SIDE REVIEW & RATING DISPLAY -->
     <h4>My rating:</h4>
     <rating ng-model="review.rating" ng-change="currentUser ? addRating() : login()" max="5" state-on="'fa fa-star fa-2x star-gold'" state-off="'fa fa-star fa-2x'" class="rating-bar"></rating>&nbsp;&nbsp;<span class="rating-flash"></span>
     <br><br>
@@ -67,7 +72,7 @@
       </div>
     </div>
     <div class="user-reviews panel panel-default" ng-repeat="review in reviews | orderBy:'-updated_at'">
-    <%= image_tag 'avatar.jpg', class:'avatar' %>
+      <%= image_tag 'avatar.jpg', class:'avatar' %>
       <p>{{review.user.username}} rated it <i ng-repeat="s in [1,2,3,4,5]" ng-class="{'fa-star':s<=review.rating, 'fa-star-o':s>review.rating}"class="fa star-gold"></i></p>
       <p><i>{{review.text }}</i></p> 
       <p>&nbsp;&nbsp;<small>Posted {{ review.created_at | date }}</small></p>

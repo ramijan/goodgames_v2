@@ -1,3 +1,7 @@
+/*************************************
+ * App module and config
+ **************************************/
+
 angular
   .module('goodGames', ['ngAnimate', 'ui.router', 'ui.bootstrap', 'templates', 'ngResource'])
   .config(['$httpProvider', function($httpProvider) {
@@ -10,10 +14,6 @@ angular
         url: '/',
         templateUrl: 'home.html',
         controller: 'HomeCtrl',
-      })
-      .state('intro', {
-        url: '/introduction',
-        templateUrl: 'intro.html'
       })
       .state('welcome', {
         url: '/welcome',

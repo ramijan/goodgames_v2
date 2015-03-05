@@ -1,7 +1,14 @@
+/**************************************
+ * Login modal controller (login.html.erb)
+ *************************************/
+
 angular
   .module('goodGames')
   .controller('AuthCtrl', ['$scope', '$http', '$rootScope', '$modalInstance', function($scope, $http, $rootScope, $modalInstance) {
 
+    // Triggered when user presses Login button
+    // Logs user in with valid credentials.  Displays error when invalid
+    // Sets relevant variables when login is successful and closes modal
     $scope.login = function() {
       $http.post('/api/login', {user: {username: $scope.username, password: $scope.password}}).success(function(data){
         if(data.error) {
@@ -23,10 +30,12 @@ angular
       });
     };
 
+    // Called when (x) button is pressed.  Closes modal
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
 
+    // Helper for login, to get user_game_links in a better format (related to giant_bomb_id rather than db game_id)
     function getShelf(game_id) {
       var links = $rootScope.currentUser.user_game_links;
 
@@ -35,6 +44,7 @@ angular
       }
     }
 
+    // Closes modal after successful login
     function closeModal() {
       var flash = $('.error-flash');
       flash.empty().removeClass('alert-danger').addClass('alert alert-info').append("<span class='glyphicon glyphicon-thumbs-up'></span> Login successful");

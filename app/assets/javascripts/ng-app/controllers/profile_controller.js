@@ -1,7 +1,15 @@
+/***************************************************
+ * Profile page controller (profile.html.erb)
+ **************************************************/
+
 angular
   .module('goodGames')
-  .controller('ProfileCtrl', ['$scope', '$http', function($scope, $http) {
+  .controller('ProfileCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
 
+    // redirect to welcome page if not logged in
+    if(!loggedIn) $state.go('welcome');
+
+    // get current user data from api endpoint
     $http.get('/api/currentuser').success(function(data){
       if(data) {
         $scope.currentUser = data;
@@ -17,7 +25,7 @@ angular
       }
     });
 
-
+    // Calculate number of game in each shelf (for display)
     function setShelfCounts() {
       $scope.played = [];
       $scope.playing = [];
