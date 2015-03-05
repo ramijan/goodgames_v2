@@ -6,6 +6,8 @@ can also rate and review those games and read other user's reviews.
 The idea and general design were inspired by http://www.goodreads.com/ and
 https://www.grouvee.com/
 
+Check it out here: https://goodgames-v2.herokuapp.com/
+
 This project was build as a single page Angular app with a rails api backend
 and a postgres db. 
 
