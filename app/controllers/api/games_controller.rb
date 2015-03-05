@@ -2,7 +2,7 @@ class Api::GamesController < ApplicationController
 
   def index
     if current_user
-      links = current_user.user_game_links
+      links = current_user.user_game_links.includes(:game)
       render json: links, include: :game
     else
       render json: {}

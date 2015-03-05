@@ -20,7 +20,7 @@ class Api::ReviewsController < ApplicationController
 
   def index
     reviews = Review.where(game_id: params[:game_id])
-    render json: reviews, only: [:id, :rating, :text, :created_at, :updated_at], include: {user: {only: [:username]}}
+    render json: reviews.includes(:user), only: [:id, :rating, :text, :created_at, :updated_at], include: {user: {only: [:username]}}
   end
 
   def recent
