@@ -24,8 +24,9 @@ mygames
 
 BUGS:
   # when logging in from search page.  afterwards ratings all count as creates rather than updates
-  when loggin in from welcome page, remain on welcome page.  should go to home
-  pagination on search goes back to one when you go back to the page, even if youre on a diff page
+  * when loggin in from welcome page, remain on welcome page.  should go to home
+  * pagination on search goes back to one when you go back to the page, even if youre on a diff page
+  *Review from game detail before shelving.  shelf buttons don't work until refresh
   
 
 factories
